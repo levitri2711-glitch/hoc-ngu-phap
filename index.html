@@ -256,6 +256,138 @@ del { color: var(--bad); }
 .chk { display: flex; gap: 8px; align-items: center; }
 @media (max-width: 560px) { .acct-who { display: none; } }
 
+/* ================= Giao diện tối giản v2 (16/11/2026) =================
+   Nguyên tắc: một cột đọc, ít khung viền, nhiều khoảng trắng; khi làm bài chỉ còn câu hỏi. */
+:root { --r: 12px; --shadow: none; --tap: 44px; }
+body { font-size: 16.5px; }
+.sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+h2 { font-size: 1.15rem; }
+
+/* Thanh trên: mảnh, không tràn trên điện thoại */
+.top { background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); }
+.top-in { padding-block: 8px; gap: 10px; }
+.brand-mark { width: 30px; height: 30px; font-size: .78rem; border-radius: 8px; }
+.top-nav { flex-wrap: nowrap; gap: 2px; min-width: 0; }
+.top-nav a, .linkbtn { min-height: 36px; display: inline-flex; align-items: center; }
+@media (max-width: 560px) {
+  .brand-name { display: none; }
+  .top-nav { margin-left: auto; }
+  .top-nav a, .linkbtn { padding: 6px 8px; font-size: .9rem; }
+}
+
+/* Trang chủ */
+.home { max-width: 860px; }
+.hero { padding-block: 36px 18px; gap: 10px; }
+.hero h1 { max-width: none; font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); }
+.hero p.lead { font-size: .95rem; font-variant-numeric: tabular-nums; }
+.continue { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 4px 12px; text-decoration: none; color: var(--ink); background: var(--sheet); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--r); padding: 12px 16px; margin-top: 8px; }
+.continue:hover { border-color: var(--accent); }
+.continue .c-lab { font-size: .78rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--accent); }
+.continue .c-title { font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.continue .c-go { color: var(--accent); font-size: 1.2rem; }
+.tools { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 47px); z-index: 10; background: var(--paper); padding-block: 10px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 220px); gap: 8px; }
+.search { min-height: var(--tap); padding: 8px 12px; font-size: 1rem; }
+.sel { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 32px; text-overflow: ellipsis; }
+@media (max-width: 560px) { .tools { grid-template-columns: 1fr; } }
+.group { padding-block: 22px 4px; gap: 8px; }
+.group-head h2 { font-size: 1rem; color: var(--muted); font-weight: 600; }
+.cards { display: block; background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.card { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 2px 12px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; box-shadow: none; padding: 12px 16px; min-height: 56px; position: relative; }
+.card:last-child { border-bottom: 0; }
+.card:hover { background: var(--soft); }
+.c-main { display: grid; min-width: 0; }
+.c-t { font-weight: 600; overflow-wrap: anywhere; }
+.card .en { font-size: .82rem; }
+.c-side { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: .82rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.card .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: transparent; border-radius: 0; }
+.card .bar i { border-radius: 0; }
+.card.full .c-p { color: var(--good); font-weight: 600; }
+@media (max-width: 420px) { .c-side .lvl { display: none; } }
+
+/* Trang chủ điểm */
+.topic { max-width: 1040px; }
+.crumb { padding-block: 18px 0; gap: 10px; }
+.crumb a { text-decoration: none; font-weight: 500; }
+.crumb-g { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.crumb-g::before { content: "·"; margin-right: 10px; }
+.t-head { gap: 6px; padding-block: 8px 0; }
+.t-head h1 { font-size: clamp(1.4rem, 1.15rem + 1vw, 1.9rem); }
+details.sum { color: var(--muted); max-width: 75ch; }
+details.sum summary, .toc-m summary { cursor: pointer; font-size: .9rem; font-weight: 500; color: var(--accent); list-style: none; min-height: 32px; display: flex; align-items: center; gap: 6px; }
+details.sum summary::-webkit-details-marker, .toc-m summary::-webkit-details-marker { display: none; }
+details.sum summary::after, .toc-m summary::after { content: "▾"; font-size: .8em; }
+details[open].sum summary::after, details[open].toc-m summary::after { content: "▴"; }
+details.sum p { padding-top: 4px; font-size: .95rem; }
+.tabs { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 47px); z-index: 10; background: var(--paper); margin-block: 10px 0; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs a { padding: 10px 12px; min-height: var(--tap); display: inline-flex; align-items: center; gap: 6px; }
+.tabs a span { font-size: .8rem; background: var(--soft); border-radius: 99px; padding: 0 7px; }
+.layout { grid-template-columns: minmax(0, 1fr) 220px; gap: 40px; padding-block: 24px 48px; }
+.prose { gap: 32px; }
+.sec { scroll-margin-top: 110px; }
+.sec h2 { border-bottom: 0; padding-bottom: 0; }
+.prose b { background: linear-gradient(transparent 62%, color-mix(in srgb, var(--mark) 75%, transparent) 62%); }
+.toc { top: calc(env(safe-area-inset-top, 0px) + 112px); }
+.toc a { border-left-width: 2px; padding: 5px 10px; line-height: 1.35; }
+.toc-m { display: none; background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); padding: 4px 14px; }
+.toc-m[open] { padding-bottom: 10px; }
+.toc-m a { display: block; text-decoration: none; color: var(--ink); padding: 8px 0; border-top: 1px solid var(--line); font-size: .93rem; }
+@media (max-width: 900px) { .layout { grid-template-columns: minmax(0, 1fr); } .toc { display: none; } .toc-m { display: block; } }
+.ex, .tbl, .formula { border-radius: 10px; }
+
+/* Danh sách bài */
+.parts { gap: 0; padding-block: 18px 48px; }
+.parts .part { border-radius: 0; border-width: 0 0 1px; background: transparent; padding: 14px 4px; }
+.parts .part:first-child { border-top: 1px solid var(--line); }
+.part .btn { min-height: 40px; }
+
+/* Làm bài: chế độ tập trung */
+body.focus .top, body.focus .foot, body.focus .crumb, body.focus .t-head, body.focus .tabs { display: none; }
+body.focus .wrap.topic { max-width: 760px; }
+.runner { max-width: 760px; margin-inline: auto; gap: 14px; padding-block: 0 24px; }
+.run-bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 15; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 4px 10px; padding-block: 10px 12px; margin-inline: -4px; padding-inline: 4px; }
+.run-bar .linkbtn { width: 40px; height: 40px; justify-content: center; font-size: 1.1rem; padding: 0; }
+.run-t { display: grid; min-width: 0; line-height: 1.3; }
+.run-t b { font-size: .95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.run-t span { font-size: .8rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.run-n { font-variant-numeric: tabular-nums; font-size: .85rem; font-weight: 600; color: var(--muted); }
+.run-prog { grid-column: 1 / -1; height: 3px; background: var(--line); border-radius: 99px; overflow: hidden; }
+.run-prog i { display: block; height: 100%; background: var(--accent); transition: width .2s; }
+.q { border: 0; border-radius: 0; background: transparent; padding: 18px 0; border-bottom: 1px solid var(--line); gap: 14px; }
+.q.ok, .q.no { border-color: var(--line); }
+.q.ok .q-n { color: var(--good); }
+.q.no .q-n { color: var(--bad); }
+.q-stem { font-size: 1.06rem; line-height: 1.65; }
+.opts { gap: 8px; }
+.opt { min-height: var(--tap); align-items: center; background: var(--sheet); border-radius: 10px; padding: 10px 14px; transition: border-color .12s, background .12s; }
+.opt:not(:disabled):hover { border-color: var(--accent); }
+.opt .L { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: var(--soft); font-size: .78rem; }
+.opt[aria-pressed="true"] .L { background: var(--accent); color: var(--accent-ink); }
+.blank { min-height: 34px; font-size: 1rem; }
+.seg { min-height: 30px; }
+.sol { background: var(--sheet); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; border-top-style: solid; }
+.passage { border-radius: 10px; }
+.run-foot { background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); margin-top: 6px; }
+.run-foot .btn { min-height: var(--tap); }
+.pager { max-width: 100%; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
+.pager::-webkit-scrollbar { display: none; }
+.pager button { min-width: 36px; min-height: 36px; flex: none; }
+@media (max-width: 560px) {
+  .run-foot { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .run-foot .row { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; }
+  .run-foot .btn { justify-content: center; }
+}
+
+/* Đăng nhập, văn bản */
+.auth { margin: 48px auto 64px; }
+.auth-form input, .auth-form textarea { min-height: var(--tap); font-size: 1rem; background: var(--sheet); }
+.auth .btn { min-height: var(--tap); justify-content: center; }
+.doc { max-width: 720px; margin-inline: auto; }
+.foot { background: transparent; }
+.foot-in { font-size: .82rem; }
+body.focus .toast { bottom: calc(140px + env(safe-area-inset-bottom, 0px)); }
+@media (max-width: 420px) { .tabs { gap: 0; } .tabs a { padding: 10px 9px; font-size: .93rem; } }
+
 </style>
 <meta name="robots" content="noindex">
 </head>
@@ -398,7 +530,7 @@ del { color: var(--bad); }
   }
   async function route() {
     const h = decodeURIComponent(location.hash.slice(1));
-    navOn(h);
+    navOn(h); document.body.classList.remove('focus');
     try {
       if (CFG.secure && /^login-[a-f0-9]+$/.test(h)) return vLoginLink(h.slice(6));
       if (CFG.secure && !AUTH && !DOCS[h]) return vSignIn();
@@ -420,26 +552,21 @@ del { color: var(--bad); }
     const nTopics = I.groups.reduce((s, g) => s + g.topics.length, 0);
     const nFocus = I.groups.reduce((s, g) => s + g.topics.reduce((a, t) => a + t.nf, 0), 0);
     let done = 0; for (const k in P.r) if (P.r[k] !== undefined) done++;
-    const cont = P.last ? `<div class="continue"><p>Bạn đang học <b>${esc(P.last.title)}</b>.</p><a class="btn" href="#x-${esc(P.last.id)}">Học tiếp</a><a class="btn ghost" href="#t-${esc(P.last.id)}">Xem lại lý thuyết</a></div>` : '';
-    main.innerHTML = `<div class="wrap">
+    const cont = P.last ? `<a class="continue" href="#x-${esc(P.last.id)}"><span class="c-lab">Học tiếp</span><span class="c-title">${esc(P.last.title)}</span><span class="c-go" aria-hidden="true">→</span></a>` : '';
+    main.innerHTML = `<div class="wrap home">
       <section class="hero">
-        <h1>Ngữ pháp tiếng Anh cho người Việt, học theo từng chủ điểm</h1>
-        <p class="lead">Mỗi chủ điểm có lý thuyết đầy đủ với ví dụ song ngữ, một bộ bài tập đầy đủ và một bộ trọng tâm. Câu nào cũng có lời giải, phân tích phương án sai và bản dịch.</p>
-        <div class="stats">
-          <div class="stat"><b>${num(nTopics)}</b><span>chủ điểm</span></div>
-          <div class="stat"><b>${num(I.total)}</b><span>câu bài tập</span></div>
-          <div class="stat"><b>${num(nFocus)}</b><span>câu trọng tâm</span></div>
-          <div class="stat"><b>${num(done)}</b><span>câu bạn đã làm</span></div>
-        </div>
+        <h1>Ngữ pháp tiếng Anh, từng chủ điểm một</h1>
+        <p class="lead">${num(nTopics)} chủ điểm · ${num(I.total)} câu có lời giải · ${num(nFocus)} câu trọng tâm${done ? ` · bạn đã làm ${num(done)} câu` : ''}</p>
         ${cont}
       </section>
       <div class="tools">
-        <label class="sr" for="q-search" hidden>Tìm chủ điểm</label>
-        <input class="search" id="q-search" type="search" placeholder="Tìm chủ điểm, ví dụ: bị động, giới từ, used to" value="${esc(FILTER.q)}" autocomplete="off">
-        <div class="chips" role="group" aria-label="Lọc theo phần">
-          <button class="chip${FILTER.g ? '' : ' on'}" data-g="">Tất cả</button>
-          ${I.groups.map((g) => `<button class="chip${FILTER.g === g.id ? ' on' : ''}" data-g="${esc(g.id)}">${esc(g.title.replace(/^Phần ([IVX]+)\..*/, 'Phần $1'))}</button>`).join('')}
-        </div>
+        <label class="sr" for="q-search">Tìm chủ điểm</label>
+        <input class="search" id="q-search" type="search" placeholder="Tìm chủ điểm: bị động, giới từ, used to…" value="${esc(FILTER.q)}" autocomplete="off">
+        <label class="sr" for="q-group">Lọc theo phần</label>
+        <select class="search sel" id="q-group">
+          <option value="">Tất cả các phần</option>
+          ${I.groups.map((g) => `<option value="${esc(g.id)}"${FILTER.g === g.id ? ' selected' : ''}>${esc(g.title)}</option>`).join('')}
+        </select>
       </div>
       <div id="groups"></div>
     </div>`;
@@ -449,13 +576,13 @@ del { color: var(--bad); }
         const ts = g.topics.filter((t) => !q || (t.title + ' ' + t.en + ' ' + t.sum).toLowerCase().includes(q));
         if (!ts.length) return '';
         return `<section class="group" style="--c:${GCOL[g.color] || 'var(--accent)'}">
-          <div class="group-head"><h2><span class="dot" aria-hidden="true"></span>${esc(g.title)}</h2><p>${esc(g.desc || '')}</p></div>
+          <div class="group-head"><h2><span class="dot" aria-hidden="true"></span>${esc(g.title)}</h2></div>
           <div class="cards">${ts.map((t) => {
-            const s = statsFor(t.id);
-            return `<a class="card" href="#t-${esc(t.id)}">
-              <h3>${esc(t.title)}</h3><span class="en">${esc(t.en)}</span>
-              <div class="meta"><span class="lvl">${esc(t.level)}</span><span>${num(t.n)} câu</span><span>${s.a ? `đã làm ${pct(s.a, t.n)}% · đúng ${pct(s.ok, s.a)}%` : 'chưa làm'}</span></div>
-              <div class="bar" aria-hidden="true"><i style="width:${pct(s.a, t.n)}%"></i></div>
+            const s = statsFor(t.id); const p = pct(s.a, t.n);
+            return `<a class="card${p >= 100 ? ' full' : ''}" href="#t-${esc(t.id)}">
+              <span class="c-main"><span class="c-t">${esc(t.title)}</span><span class="en">${esc(t.en)}</span></span>
+              <span class="c-side"><span class="lvl">${esc(t.level)}</span><span class="c-p">${s.a ? `${p}%` : `${num(t.n)} câu`}</span></span>
+              <span class="bar" aria-hidden="true"><i style="width:${p}%"></i></span>
             </a>`;
           }).join('')}</div></section>`;
       }).join('');
@@ -464,9 +591,8 @@ del { color: var(--bad); }
     draw();
     const inp = document.getElementById('q-search');
     inp.addEventListener('input', () => { FILTER.q = inp.value; draw(); });
-    main.querySelectorAll('[data-g]').forEach((b) => b.addEventListener('click', () => {
-      FILTER.g = b.dataset.g; main.querySelectorAll('[data-g]').forEach((x) => x.classList.toggle('on', x === b)); draw();
-    }));
+    const sel = document.getElementById('q-group');
+    sel.addEventListener('change', () => { FILTER.g = sel.value; draw(); });
   }
 
   // ---------- Trang chủ điểm ----------
@@ -489,12 +615,12 @@ del { color: var(--bad); }
     const nAll = T.parts.reduce((s, p) => s + countQ(p.items), 0);
     const fu = focusUnits(T);
     const g = I.groups.find((x) => x.topics.some((t) => t.id === id));
-    main.innerHTML = `<div class="wrap">
-      <nav class="crumb" aria-label="Vị trí"><a href="#home">Lộ trình</a><span>›</span><span>${esc(g ? g.title : T.group)}</span></nav>
-      <header class="t-head"><h1>${esc(T.title)}</h1><p class="en">${esc(T.en)} · <span class="lvl">${esc(T.level)}</span></p><p class="sum">${md(T.sum)}</p></header>
+    main.innerHTML = `<div class="wrap topic">
+      <nav class="crumb" aria-label="Vị trí"><a href="#home">← Lộ trình</a><span class="crumb-g">${esc(g ? g.title : T.group)}</span></nav>
+      <header class="t-head"><h1>${esc(T.title)}</h1><p class="en">${esc(T.en)} · <span class="lvl">${esc(T.level)}</span></p>${tab === 't' ? `<details class="sum"><summary>Tóm tắt chủ điểm</summary><p>${md(T.sum)}</p></details>` : ''}</header>
       <nav class="tabs" aria-label="Phần của chủ điểm">
         <a href="#t-${id}" class="${tab === 't' ? 'on' : ''}">Lý thuyết</a>
-        <a href="#x-${id}" class="${tab === 'x' ? 'on' : ''}">Bài tập đầy đủ <span>${num(nAll)}</span></a>
+        <a href="#x-${id}" class="${tab === 'x' ? 'on' : ''}">Bài tập <span>${num(nAll)}</span></a>
         <a href="#f-${id}" class="${tab === 'f' ? 'on' : ''}">Trọng tâm <span>${num(countQ(fu))}</span></a>
       </nav>
       <div id="pane"></div>
@@ -528,8 +654,11 @@ del { color: var(--bad); }
       </article>
       <nav class="toc" aria-label="Mục lục"><b>Mục lục</b>${T.sections.map((s, i) => `<a href="#t-${id}" data-sec="${i}">${esc(s.title.replace(/\*\*/g, ''))}</a>`).join('')}</nav>
     </div>`;
+    const art = pane.querySelector('.prose');
+    if (T.sections.length > 2) art.insertAdjacentHTML('afterbegin', `<details class="toc-m"><summary>Mục lục (${T.sections.length} mục)</summary>${T.sections.map((s, i) => `<a href="#t-${id}" data-sec="${i}">${esc(s.title.replace(/\*\*/g, ''))}</a>`).join('')}</details>`);
     pane.querySelectorAll('[data-sec]').forEach((a) => a.addEventListener('click', (e) => {
-      e.preventDefault(); const el = document.getElementById('sec-' + a.dataset.sec); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      e.preventDefault(); const d = a.closest('details'); if (d) d.open = false;
+      const el = document.getElementById('sec-' + a.dataset.sec); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
   }
 
@@ -644,14 +773,17 @@ del { color: var(--bad); }
     const all = qsOf(units); let g = 0; let ok = 0;
     pages.forEach((pg, i) => { if (RUN.done[i]) for (const q of qsOf(pg)) { g++; if (grade(q, RUN.ans[q.id])) ok++; } });
     const pq = qsOf(pages[RUN.page]); const pok = pq.filter((q) => grade(q, RUN.ans[q.id])).length;
+    document.body.classList.add('focus');
+    const nAns = () => pq.filter((q) => answered(q, RUN.ans[q.id])).length;
     pane.innerHTML = `<div class="runner">
-      <div class="run-head">
-        <h2>${md(U.title)}</h2>
-        ${RUN.mode === 'x' ? '<button class="btn quiet" data-act="back">← Danh sách bài</button>' : ''}
+      <div class="run-bar">
+        <button class="linkbtn" data-act="exit" aria-label="Thoát chế độ làm bài">✕</button>
+        <div class="run-t"><b>${esc(T.title)}</b><span>${md(U.title)} · trang ${RUN.page + 1}/${pages.length}</span></div>
+        <span class="run-n" id="run-n">${done ? `${pok}/${pq.length} đúng` : `${nAns()}/${pq.length}`}</span>
+        <span class="run-prog" aria-hidden="true"><i id="run-prog" style="width:${pct(done ? pq.length : nAns(), pq.length)}%"></i></span>
       </div>
-      ${U.note ? `<p class="meta">${md(U.note)}</p>` : ''}
-      <div class="score"><span class="pill">${num(all.length)} câu · trang ${RUN.page + 1}/${pages.length}</span>${g ? `<span class="pill ok">Đúng ${ok}</span><span class="pill no">Sai ${g - ok}</span><span class="pill">Đã chấm ${g}/${all.length}</span>` : ''}</div>
-      ${done ? `<p class="score"><span class="pill ok">Trang này: đúng ${pok}/${pq.length}</span></p>` : ''}
+      ${U.note && RUN.page === 0 && !done ? `<p class="meta">${md(U.note)}</p>` : ''}
+      ${g ? `<div class="score"><span class="pill ok">Đúng ${ok}</span><span class="pill no">Sai ${g - ok}</span><span class="pill">Đã chấm ${g}/${all.length} câu của bài</span></div>` : ''}
       ${body}
       <div class="run-foot">
         <div class="pager" role="group" aria-label="Chọn trang">${pages.map((_, i) => `<button type="button" data-page="${i}" class="${i === RUN.page ? 'on' : ''}${RUN.done[i] ? ' done' : ''}" aria-label="Trang ${i + 1}${RUN.done[i] ? ', đã chấm' : ''}">${i + 1}</button>`).join('')}</div>
@@ -661,19 +793,27 @@ del { color: var(--bad); }
       </div>
     </div>`;
     const rerender = (top) => { renderRun(pane, T); if (top) pane.scrollIntoView({ block: 'start' }); };
+    const prog = () => { if (done) return; const k = nAns(); document.getElementById('run-n').textContent = `${k}/${pq.length}`; document.getElementById('run-prog').style.width = pct(k, pq.length) + '%'; };
     pane.querySelectorAll('.opt, .seg').forEach((b) => b.addEventListener('click', () => {
       RUN.ans[b.dataset.q] = Number(b.dataset.v);
       const grp = b.classList.contains('opt') ? b.parentElement.querySelectorAll('.opt') : b.closest('.q-stem').querySelectorAll('.seg');
       grp.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      prog();
     }));
     pane.querySelectorAll('.blank').forEach((inp) => inp.addEventListener('input', () => {
       const q = all.find((x) => x.id === inp.dataset.q);
       const arr = Array.isArray(RUN.ans[q.id]) ? RUN.ans[q.id] : new Array(q.b.length).fill('');
       arr[Number(inp.dataset.i)] = inp.value; RUN.ans[q.id] = arr;
+      prog();
     }));
     pane.querySelectorAll('[data-page]').forEach((b) => b.addEventListener('click', () => { RUN.page = Number(b.dataset.page); rerender(true); }));
     const act = (name, fn) => { const b = pane.querySelector(`[data-act="${name}"]`); if (b) b.addEventListener('click', fn); };
-    act('back', () => { RUN = null; renderParts(pane, T, T.id); pane.scrollIntoView({ block: 'start' }); });
+    act('exit', () => {
+      const dirty = !done && nAns() > 0;
+      if (dirty && !confirm('Thoát? Các câu chưa nộp ở trang này sẽ không được lưu.')) return;
+      RUN = null; document.body.classList.remove('focus');
+      if (location.hash === '#x-' + T.id) { renderParts(pane, T, T.id); window.scrollTo(0, 0); } else location.hash = 'x-' + T.id;
+    });
     act('submit', () => {
       const miss = pq.filter((q) => !answered(q, RUN.ans[q.id])).length;
       RUN.done[RUN.page] = true;
