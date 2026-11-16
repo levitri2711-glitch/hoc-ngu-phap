@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Học ngữ pháp</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Ngữ pháp tiếng Anh cho người Việt: 76 chủ điểm, lý thuyết đầy đủ, 19.150 câu bài tập có giải thích chi tiết.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lexend:wght@500;600;700&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+/* Bố cục: vở học ngữ pháp - một cột đọc rộng ~72 ký tự, lưới thẻ chủ điểm, bút dạ quang đánh dấu chỗ quan trọng */
+:root {
+  --paper: #f5f7fa;
+  --sheet: #ffffff;
+  --ink: #17202f;
+  --muted: #586274;
+  --line: #dbe1e9;
+  --soft: #eef2f6;
+  --accent: #0b6874;
+  --accent-ink: #ffffff;
+  --accent-soft: #e2f1f2;
+  --mark: #fde68a;
+  --mark-ink: #3b2f05;
+  --good: #157a3d;
+  --good-soft: #e3f4e8;
+  --bad: #b42323;
+  --bad-soft: #fbe7e7;
+  --warn: #8a5a00;
+  --warn-soft: #fdf1d8;
+  --g-blue: #2f62c8; --g-green: #2b8a4a; --g-orange: #c46a12; --g-purple: #7448c2; --g-teal: #0b7f86; --g-rose: #c23a64;
+  --f-display: "Lexend", "Be Vietnam Pro", system-ui, sans-serif;
+  --f-body: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --f-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --r: 10px;
+  --shadow: 0 1px 2px rgba(23, 32, 47, .06), 0 4px 14px rgba(23, 32, 47, .05);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #10151d; --sheet: #171e29; --ink: #e6ebf2; --muted: #9aa5b6; --line: #2a3443; --soft: #1d2531;
+    --accent: #4fc1cb; --accent-ink: #062a2e; --accent-soft: #14343a; --mark: #6b5713; --mark-ink: #fff4c7;
+    --good: #5fd08a; --good-soft: #15301f; --bad: #ff8a8a; --bad-soft: #3a1b1d; --warn: #f2c063; --warn-soft: #3a2e13;
+    --g-blue: #7ea2f0; --g-green: #6fcf8f; --g-orange: #f0a35a; --g-purple: #b39cf0; --g-teal: #5fcad0; --g-rose: #f08aa8;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #10151d; --sheet: #171e29; --ink: #e6ebf2; --muted: #9aa5b6; --line: #2a3443; --soft: #1d2531;
+  --accent: #4fc1cb; --accent-ink: #062a2e; --accent-soft: #14343a; --mark: #6b5713; --mark-ink: #fff4c7;
+  --good: #5fd08a; --good-soft: #15301f; --bad: #ff8a8a; --bad-soft: #3a1b1d; --warn: #f2c063; --warn-soft: #3a2e13;
+  --g-blue: #7ea2f0; --g-green: #6fcf8f; --g-orange: #f0a35a; --g-purple: #b39cf0; --g-teal: #5fcad0; --g-rose: #f08aa8;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 var(--f-body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--sheet); }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.25; text-wrap: balance; margin: 0; letter-spacing: -.01em; }
+h1 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.25rem); font-weight: 700; }
+h2 { font-size: 1.3rem; font-weight: 600; }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p { margin: 0; }
+code { font-family: var(--f-mono); font-size: .9em; background: var(--soft); padding: .05em .35em; border-radius: 4px; }
+b, strong { font-weight: 600; }
+del { color: var(--bad); }
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-ink); padding: 8px 12px; z-index: 50; }
+.skip:focus { left: 8px; top: 8px; }
+.loading { padding-block: 64px; color: var(--muted); }
+
+/* Thanh trên */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--sheet); border-bottom: 1px solid var(--line); }
+.top-in { display: flex; align-items: center; gap: 16px; padding-block: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: var(--f-display); font-weight: 600; min-width: 0; }
+.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font-size: .85rem; letter-spacing: .04em; flex: none; }
+.brand-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.top-nav { margin-left: auto; display: flex; gap: 4px; }
+.top-nav a { text-decoration: none; color: var(--muted); padding: 6px 10px; border-radius: 8px; font-weight: 500; font-size: .95rem; }
+.top-nav a.on, .top-nav a:hover { color: var(--ink); background: var(--soft); }
+
+/* Trang chủ */
+.hero { padding-block: 40px 24px; display: grid; gap: 18px; }
+.hero h1 { max-width: 22ch; }
+.hero p.lead { color: var(--muted); max-width: 62ch; font-size: 1.05rem; }
+.stats { display: flex; flex-wrap: wrap; gap: 10px; }
+.stat { background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 14px; display: grid; gap: 2px; min-width: 120px; }
+.stat b { font-family: var(--f-display); font-size: 1.35rem; font-variant-numeric: tabular-nums; font-weight: 600; }
+.stat span { color: var(--muted); font-size: .85rem; }
+.continue { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; background: var(--accent-soft); border-radius: var(--r); padding: 12px 16px; }
+.continue p { min-width: 0; }
+.tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-block: 8px 4px; }
+.search { flex: 1 1 260px; min-width: 0; font: inherit; padding: 10px 14px; border-radius: var(--r); border: 1px solid var(--line); background: var(--sheet); color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: .85rem; border: 1px solid var(--line); background: var(--sheet); color: var(--muted); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.chip.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.group { padding-block: 26px 6px; display: grid; gap: 12px; }
+.group-head { display: grid; gap: 4px; }
+.group-head h2 { display: flex; align-items: center; gap: 10px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--c, var(--accent)); }
+.group-head p { color: var(--muted); font-size: .95rem; max-width: 70ch; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.card { display: grid; gap: 8px; align-content: start; text-decoration: none; color: var(--ink); background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; box-shadow: var(--shadow); transition: border-color .15s; min-width: 0; }
+.card:hover { border-color: var(--accent); }
+.card h3 { font-size: 1rem; }
+.card .en { color: var(--muted); font-size: .85rem; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: .82rem; font-variant-numeric: tabular-nums; }
+.lvl { font-family: var(--f-mono); font-size: .75rem; color: var(--muted); border: 1px solid var(--line); border-radius: 5px; padding: 0 6px; }
+.bar { height: 6px; background: var(--soft); border-radius: 99px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
+.empty { color: var(--muted); padding-block: 24px; }
+
+/* Trang chủ điểm */
+.crumb { padding-block: 22px 0; font-size: .9rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; }
+.crumb a { color: var(--muted); }
+.t-head { display: grid; gap: 10px; padding-block: 10px 6px; }
+.t-head .en { color: var(--muted); font-family: var(--f-display); font-weight: 500; }
+.t-head .sum { max-width: 75ch; color: var(--muted); }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-block: 14px 0; overflow-x: auto; }
+.tabs a { white-space: nowrap; text-decoration: none; color: var(--muted); padding: 10px 14px; border-bottom: 3px solid transparent; font-weight: 500; }
+.tabs a.on { color: var(--ink); border-bottom-color: var(--accent); }
+.tabs a span { font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 400; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 32px; padding-block: 22px 40px; align-items: start; }
+.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 72px); display: grid; gap: 2px; font-size: .9rem; max-height: calc(100vh - 100px); overflow: auto; }
+.toc b { font-family: var(--f-display); font-weight: 600; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding-bottom: 6px; }
+.toc a { color: var(--muted); text-decoration: none; padding: 4px 8px; border-left: 2px solid var(--line); }
+.toc a:hover { color: var(--ink); border-left-color: var(--accent); }
+@media (max-width: 900px) { .layout { grid-template-columns: minmax(0, 1fr); } .toc { display: none; } }
+.prose { display: grid; gap: 28px; min-width: 0; }
+.sec { display: grid; gap: 12px; min-width: 0; scroll-margin-top: 80px; }
+.sec h2 { padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+.sec p, .sec li { max-width: 72ch; }
+.sec ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.prose b { background: linear-gradient(transparent 58%, var(--mark) 58%); color: inherit; padding: 0 1px; }
+.formula { font-family: var(--f-mono); font-size: .92rem; background: var(--sheet); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 6px; padding: 12px 14px; white-space: pre-wrap; overflow-x: auto; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--sheet); }
+.tbl table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+.tbl th, .tbl td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.tbl th { background: var(--soft); font-weight: 600; font-family: var(--f-display); font-size: .85rem; }
+.tbl tr:last-child td { border-bottom: 0; }
+.exs { display: grid; gap: 8px; }
+.ex { background: var(--sheet); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; display: grid; gap: 2px; }
+.ex .vi { color: var(--muted); font-size: .93rem; }
+.ex .note { color: var(--accent); font-size: .85rem; }
+.note-box { border-radius: 8px; padding: 10px 14px; display: grid; gap: 4px; }
+.note-box.tip { background: var(--accent-soft); }
+.note-box.warn { background: var(--warn-soft); }
+.note-box .lab { font-family: var(--f-display); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }
+.note-box.tip .lab { color: var(--accent); }
+.note-box.warn .lab { color: var(--warn); }
+.mis td:first-child { color: var(--bad); }
+.mis td:nth-child(2) { color: var(--good); }
+.related { display: flex; flex-wrap: wrap; gap: 8px; }
+.related a { text-decoration: none; border: 1px solid var(--line); background: var(--sheet); border-radius: 999px; padding: 4px 12px; font-size: .9rem; }
+
+/* Bài tập */
+.parts { display: grid; gap: 10px; padding-block: 20px 40px; }
+.part { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; align-items: center; background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; }
+.part h3 { font-size: 1rem; }
+.part p { color: var(--muted); font-size: .9rem; grid-column: 1; }
+.part .meta { grid-column: 1; }
+.part .act { grid-column: 2; grid-row: 1 / span 3; }
+@media (max-width: 560px) { .part { grid-template-columns: minmax(0, 1fr); } .part .act { grid-column: 1; grid-row: auto; } }
+.btn { font: inherit; font-weight: 600; font-size: .95rem; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); border-radius: 8px; padding: 9px 16px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.quiet { background: var(--soft); color: var(--ink); border-color: var(--line); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.runner { display: grid; gap: 16px; padding-block: 18px 48px; max-width: 820px; }
+.run-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; justify-content: space-between; }
+.run-head h2 { min-width: 0; }
+.score { display: flex; flex-wrap: wrap; gap: 8px; font-variant-numeric: tabular-nums; }
+.pill { border-radius: 999px; padding: 3px 12px; font-size: .88rem; font-weight: 600; background: var(--soft); color: var(--muted); }
+.pill.ok { background: var(--good-soft); color: var(--good); }
+.pill.no { background: var(--bad-soft); color: var(--bad); }
+.pill.f { background: var(--mark); color: var(--mark-ink); }
+.q { background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.q.ok { border-color: var(--good); }
+.q.no { border-color: var(--bad); }
+.q-top { display: flex; gap: 10px; align-items: baseline; }
+.q-n { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.q-stem { min-width: 0; overflow-wrap: anywhere; font-size: 1.02rem; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 10px; align-items: flex-start; text-align: left; font: inherit; width: 100%; border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 8px; padding: 9px 12px; cursor: pointer; }
+.opt .L { font-family: var(--f-mono); font-weight: 500; color: var(--muted); flex: none; }
+.opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.opt.right { border-color: var(--good); background: var(--good-soft); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt:disabled { cursor: default; color: var(--ink); }
+.blank { font: inherit; width: 9.5em; max-width: 100%; border: 0; border-bottom: 2px solid var(--accent); background: var(--accent-soft); color: var(--ink); padding: 1px 6px; border-radius: 4px 4px 0 0; }
+.blank.right { border-bottom-color: var(--good); background: var(--good-soft); }
+.blank.wrong { border-bottom-color: var(--bad); background: var(--bad-soft); }
+.seg { font: inherit; border: 0; background: transparent; color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-color: var(--muted); cursor: pointer; padding: 0 2px; border-radius: 4px; }
+.seg sup { font-family: var(--f-mono); font-size: .7em; color: var(--muted); margin-left: 1px; }
+.seg[aria-pressed="true"] { background: var(--accent-soft); text-decoration-color: var(--accent); }
+.seg.right { background: var(--good-soft); text-decoration-color: var(--good); }
+.seg.wrong { background: var(--bad-soft); text-decoration-color: var(--bad); }
+.passage { background: var(--soft); border-radius: 8px; padding: 14px 16px; display: grid; gap: 8px; }
+.passage h3 { font-size: 1rem; }
+.sol { border-top: 1px dashed var(--line); padding-top: 12px; display: grid; gap: 8px; font-size: .95rem; }
+.sol .verdict { font-weight: 600; }
+.sol .verdict.ok { color: var(--good); }
+.sol .verdict.no { color: var(--bad); }
+.sol .why { display: grid; gap: 4px; margin: 0; padding-left: 1.1em; color: var(--muted); }
+.sol .vi { color: var(--muted); font-style: italic; }
+.sol .pt { font-size: .8rem; font-family: var(--f-display); letter-spacing: .03em; color: var(--accent); text-transform: uppercase; }
+.run-foot { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; position: sticky; bottom: 0; background: var(--paper); padding-block: 12px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); }
+.pager { display: flex; flex-wrap: wrap; gap: 6px; }
+.pager button { font: inherit; font-size: .85rem; min-width: 34px; border: 1px solid var(--line); background: var(--sheet); color: var(--ink); border-radius: 6px; padding: 4px 8px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.pager button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.pager button.done { border-color: var(--good); }
+
+/* Văn bản pháp lý, hướng dẫn */
+.doc { padding-block: 28px 48px; display: grid; gap: 14px; max-width: 760px; }
+.doc h2 { margin-top: 10px; }
+.doc ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.doc .fill { background: var(--mark); color: var(--mark-ink); padding: 0 4px; border-radius: 3px; }
+.confirm { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: var(--bad-soft); border-radius: 8px; padding: 10px 14px; }
+
+.foot { border-top: 1px solid var(--line); background: var(--sheet); margin-top: 24px; }
+.foot-in { padding-block: 20px calc(20px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 8px; font-size: .88rem; color: var(--muted); }
+.foot-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.foot-links a { color: var(--muted); }
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%) translateY(20px); background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 8px; opacity: 0; pointer-events: none; transition: .2s; z-index: 40; max-width: calc(100% - 32px); }
+.toast.on { opacity: 1; transform: translateX(-50%); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+.top-nav a { white-space: nowrap; }
+@media (max-width: 420px) { .brand-name { font-size: .95rem; } .top-nav a { padding: 6px 8px; font-size: .9rem; } }
+
+/* ---------- Tài khoản, đăng nhập, quản trị ---------- */
+.top-nav { align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.acct { display: inline-flex; align-items: center; gap: 4px; }
+.acct:empty { display: none; }
+.acct-who { color: var(--muted); font-size: .85rem; padding: 0 6px; max-width: 16ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.linkbtn { font: inherit; font-size: .9rem; background: none; border: 0; color: var(--muted); cursor: pointer; padding: 6px 8px; border-radius: 8px; }
+.linkbtn:hover { color: var(--ink); background: var(--soft); }
+.auth { max-width: 520px; margin: 40px auto 56px; display: grid; gap: 14px; }
+.auth h1 { margin: 0; }
+.auth-msg { background: var(--accent-soft); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin: 0; }
+.auth-form, .inv { display: grid; gap: 12px; }
+.auth-form label, .inv label { display: grid; gap: 6px; font-weight: 500; }
+.auth-form input, .auth-form textarea, .inv input, .inv textarea, .inv select, .row-act select {
+  font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); width: 100%; box-sizing: border-box; }
+.auth-form details { display: grid; gap: 10px; }
+.auth-form summary { cursor: pointer; color: var(--muted); }
+.auth-form details[open] label { margin-top: 10px; }
+.muted { color: var(--muted); font-size: .92rem; }
+.admin { padding-block: 20px 56px; display: grid; gap: 22px; }
+.adm { display: grid; gap: 10px; }
+.adm h2 { display: flex; align-items: center; gap: 8px; margin: 0; }
+.row-act { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.row-act select { width: auto; padding: 7px 8px; }
+.row-act .btn { padding: 7px 12px; }
+.chk { display: flex; gap: 8px; align-items: center; }
+@media (max-width: 560px) { .acct-who { display: none; } }
+
+</style>
+<meta name="robots" content="noindex">
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua, đến nội dung chính</a>
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#home" aria-label="Học ngữ pháp, trang chủ"><span class="brand-mark" aria-hidden="true">NP</span><span class="brand-name">Học ngữ pháp</span></a>
+    <nav class="top-nav" aria-label="Điều hướng chính">
+      <a href="#home" data-nav="home">Lộ trình</a>
+      <a href="#guide" data-nav="guide">Cách học</a>
+      <span class="acct" id="acct"></span>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1"><div class="wrap"><p class="loading">Đang tải nội dung...</p></div></main>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p class="foot-links"><a href="#terms">Điều khoản sử dụng</a><a href="#privacy">Quyền riêng tư</a><a href="#disclaimer">Miễn trừ trách nhiệm</a><a href="#copyright">Bản quyền nội dung</a></p>
+    <p class="foot-note">Học ngữ pháp là tài liệu tự học ngữ pháp tiếng Anh, phi thương mại.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="wrap">Trang cần bật JavaScript để hiển thị bài học và bài tập.</p></noscript>
+
+<script>window.HNP_CFG = {"secure":true,"api":"https://script.google.com/macros/s/AKfycbzi55VpMc-Jn3fvPomwfgCp6znMONgmb5I2XmHJy6GouFG2woSu6H9NoWFN9hiczKYS/exec","operator":"Quản trị viên Học ngữ pháp (Chưa đăng ký pháp lý với cơ quan chức năng)","email":"levitri2711@gmail.com"};</script>
+<script>
+(() => {
+  'use strict';
+  const SITE = 'Học ngữ pháp';
+  const CFG = window.HNP_CFG || {}; // bản chính thức: { secure, api, operator, email }
+  const KEY = 'npt-progress-v1';
+  const PAGE = 10;
+  const ABCD = ['A', 'B', 'C', 'D', 'E'];
+  const GCOL = { blue: 'var(--g-blue)', green: 'var(--g-green)', orange: 'var(--g-orange)', purple: 'var(--g-purple)', teal: 'var(--g-teal)', rose: 'var(--g-rose)' };
+  const main = document.getElementById('main');
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const md = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`(.+?)`/g, '<code>$1</code>').replace(/~~(.+?)~~/g, '<del>$1</del>').replace(/\n/g, '<br>');
+  const num = (n) => Number(n).toLocaleString('vi-VN');
+  const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+
+  // ---------- Lưu tiến độ trong trình duyệt ----------
+  let P = { r: {}, last: null };
+  try { const v = JSON.parse(localStorage.getItem(KEY) || 'null'); if (v && typeof v === 'object') P = { r: v.r || {}, last: v.last || null }; } catch (e) { /* trình duyệt chặn lưu trữ */ }
+  let syncT = null; let DIRTY = {};
+  const save = (changed) => {
+    try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) { /* bỏ qua */ }
+    if (changed) Object.assign(DIRTY, changed);
+    if (CFG.secure && canEx() && Object.keys(DIRTY).length) { clearTimeout(syncT); syncT = setTimeout(pushProgress, 4000); }
+  };
+
+  // ---------- Tài khoản (bản chính thức) ----------
+  const AKEY = 'hnp-auth-v1';
+  let AUTH = null;
+  try { AUTH = JSON.parse(localStorage.getItem(AKEY) || 'null'); } catch (e) { AUTH = null; }
+  const RANK = { viewer: 0, learner: 1, editor: 2, owner: 3 };
+  const role = () => (AUTH && AUTH.user ? AUTH.user.role : '');
+  const atLeast = (r) => !CFG.secure || (AUTH && RANK[role()] >= RANK[r]);
+  function canEx() { return atLeast('learner'); }
+  function setAuth(a) { AUTH = a; try { if (a) localStorage.setItem(AKEY, JSON.stringify(a)); else localStorage.removeItem(AKEY); } catch (e) { /* bỏ qua */ } KEYS = {}; drawAcct(); }
+  async function api(action, payload) {
+    const r = await fetch(CFG.api, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, payload: payload || {}, session: AUTH && AUTH.session }) });
+    const j = await r.json();
+    if (!j.ok) { const e = new Error(j.error.message); e.code = j.error.code; if (e.code === 'auth' && AUTH) { signOut(true); } throw e; }
+    return j.data;
+  }
+  async function pushProgress() {
+    const d = DIRTY; DIRTY = {};
+    try { await api('saveProgress', { data: { r: d, last: P.last } }); } catch (e) { if (e.code !== 'auth') Object.assign(DIRTY, d); }
+  }
+  async function pullProgress() {
+    try {
+      const d = await api('getProgress');
+      if (d && d.r) { P.r = Object.assign({}, d.r, P.r); if (!P.last && d.last) P.last = d.last; try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) { /* bỏ qua */ } }
+      const local = {}; for (const k in P.r) if (!d || !d.r || !(k in d.r)) local[k] = P.r[k];
+      if (Object.keys(local).length) { Object.assign(DIRTY, local); pushProgress(); }
+    } catch (e) { /* ngoại tuyến */ }
+  }
+  function signOut(expired) {
+    setAuth(null); P = { r: {}, last: null }; try { localStorage.removeItem(KEY); } catch (e) { /* bỏ qua */ }
+    for (const k in CACHE) delete CACHE[k]; RUN = null;
+    if (expired) toast('Phiên đăng nhập đã hết hạn hoặc quyền đã thay đổi. Hãy đăng nhập lại.');
+    location.hash = 'home'; route();
+  }
+  function drawAcct() {
+    const el = document.getElementById('acct'); if (!el) return;
+    if (!CFG.secure) { el.innerHTML = ''; return; }
+    if (!AUTH) { el.innerHTML = '<a href="#home" class="acct-in">Đăng nhập</a>'; return; }
+    const u = AUTH.user;
+    el.innerHTML = `${atLeast('editor') ? '<a href="#admin" data-nav="admin">Quản trị</a>' : ''}<span class="acct-who" title="${esc(u.email)}">${esc(u.email.split('@')[0])} · ${esc(u.role_label.split(' (')[0])}</span><button class="linkbtn" id="btn-out">Đăng xuất</button>`;
+    document.getElementById('btn-out').addEventListener('click', () => signOut(false));
+  }
+
+  // Giải mã nội dung (AES-GCM, khoá do máy chủ cấp sau khi đăng nhập).
+  let KEYS = {};
+  const unb64 = (s) => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
+  async function decryptJSON(text, which) {
+    if (!KEYS[which]) {
+      const raw = AUTH && AUTH.user && AUTH.user.keys && AUTH.user.keys[which];
+      if (!raw) throw new Error('nokey');
+      KEYS[which] = await crypto.subtle.importKey('raw', unb64(raw), 'AES-GCM', false, ['decrypt']);
+    }
+    const buf = unb64(text.trim());
+    const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: buf.slice(0, 12) }, KEYS[which], buf.slice(12));
+    return JSON.parse(new TextDecoder().decode(plain));
+  }
+  function statsFor(id) {
+    let a = 0; let ok = 0; const pre = id + ':';
+    for (const k in P.r) if (k.startsWith(pre)) { a++; if (P.r[k]) ok++; }
+    return { a, ok };
+  }
+
+  let toastT;
+  function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600); }
+
+  // ---------- Dữ liệu ----------
+  let IDX = null; const CACHE = {};
+  async function getIndex() {
+    if (!IDX) { const r = await fetch('data/index.json'); if (!r.ok) throw new Error('index'); IDX = await r.json(); }
+    return IDX;
+  }
+  async function getTopic(id) {
+    if (!CACHE[id]) {
+      if (CFG.secure) {
+        const r = await fetch('data/t/' + encodeURIComponent(id) + '.th'); if (!r.ok) throw new Error('topic');
+        const T = await decryptJSON(await r.text(), 'theory');
+        if (canEx()) { const r2 = await fetch('data/t/' + encodeURIComponent(id) + '.ex'); if (!r2.ok) throw new Error('topic'); T.parts = (await decryptJSON(await r2.text(), 'exercise')).parts; }
+        else { T.parts = []; T.locked = true; }
+        CACHE[id] = T;
+      } else { const r = await fetch('data/t/' + encodeURIComponent(id) + '.json'); if (!r.ok) throw new Error('topic'); CACHE[id] = await r.json(); }
+    }
+    return CACHE[id];
+  }
+  const failView = () => { main.innerHTML = `<div class="wrap doc"><h1>Không tải được nội dung</h1><p>Kiểm tra kết nối mạng rồi tải lại trang. Nếu bạn mở tệp trực tiếp từ máy tính, hãy chạy qua một máy chủ web (xem README).</p><p><a class="btn" href="#home">Về trang chủ</a></p></div>`; };
+
+  // ---------- Điều hướng ----------
+  let RUN = null; // { id, mode, part, page, ans: {}, done: {} }
+  function navOn(h) {
+    document.querySelectorAll('[data-nav]').forEach((a) => a.classList.toggle('on', (a.dataset.nav === 'home' && (!h || h === 'home' || /^[txf]-/.test(h))) || a.dataset.nav === h));
+  }
+  async function route() {
+    const h = decodeURIComponent(location.hash.slice(1));
+    navOn(h);
+    try {
+      if (CFG.secure && /^login-[a-f0-9]+$/.test(h)) return vLoginLink(h.slice(6));
+      if (CFG.secure && !AUTH && !DOCS[h]) return vSignIn();
+      if (h === 'admin') return atLeast('editor') ? vAdmin() : vHome();
+      if (!h || h === 'home') await vHome();
+      else if (DOCS[h]) vDoc(h);
+      else {
+        const m = h.match(/^([txf])-([a-z0-9-]+)$/);
+        if (m) await vTopic(m[2], m[1]); else await vHome();
+      }
+    } catch (e) { failView(); }
+  }
+  window.addEventListener('hashchange', () => { route().then(() => { window.scrollTo(0, 0); main.focus({ preventScroll: true }); }); });
+
+  // ---------- Trang chủ ----------
+  let FILTER = { q: '', g: '' };
+  async function vHome() {
+    const I = await getIndex();
+    const nTopics = I.groups.reduce((s, g) => s + g.topics.length, 0);
+    const nFocus = I.groups.reduce((s, g) => s + g.topics.reduce((a, t) => a + t.nf, 0), 0);
+    let done = 0; for (const k in P.r) if (P.r[k] !== undefined) done++;
+    const cont = P.last ? `<div class="continue"><p>Bạn đang học <b>${esc(P.last.title)}</b>.</p><a class="btn" href="#x-${esc(P.last.id)}">Học tiếp</a><a class="btn ghost" href="#t-${esc(P.last.id)}">Xem lại lý thuyết</a></div>` : '';
+    main.innerHTML = `<div class="wrap">
+      <section class="hero">
+        <h1>Ngữ pháp tiếng Anh cho người Việt, học theo từng chủ điểm</h1>
+        <p class="lead">Mỗi chủ điểm có lý thuyết đầy đủ với ví dụ song ngữ, một bộ bài tập đầy đủ và một bộ trọng tâm. Câu nào cũng có lời giải, phân tích phương án sai và bản dịch.</p>
+        <div class="stats">
+          <div class="stat"><b>${num(nTopics)}</b><span>chủ điểm</span></div>
+          <div class="stat"><b>${num(I.total)}</b><span>câu bài tập</span></div>
+          <div class="stat"><b>${num(nFocus)}</b><span>câu trọng tâm</span></div>
+          <div class="stat"><b>${num(done)}</b><span>câu bạn đã làm</span></div>
+        </div>
+        ${cont}
+      </section>
+      <div class="tools">
+        <label class="sr" for="q-search" hidden>Tìm chủ điểm</label>
+        <input class="search" id="q-search" type="search" placeholder="Tìm chủ điểm, ví dụ: bị động, giới từ, used to" value="${esc(FILTER.q)}" autocomplete="off">
+        <div class="chips" role="group" aria-label="Lọc theo phần">
+          <button class="chip${FILTER.g ? '' : ' on'}" data-g="">Tất cả</button>
+          ${I.groups.map((g) => `<button class="chip${FILTER.g === g.id ? ' on' : ''}" data-g="${esc(g.id)}">${esc(g.title.replace(/^Phần ([IVX]+)\..*/, 'Phần $1'))}</button>`).join('')}
+        </div>
+      </div>
+      <div id="groups"></div>
+    </div>`;
+    const draw = () => {
+      const q = FILTER.q.trim().toLowerCase();
+      const html = I.groups.filter((g) => !FILTER.g || g.id === FILTER.g).map((g) => {
+        const ts = g.topics.filter((t) => !q || (t.title + ' ' + t.en + ' ' + t.sum).toLowerCase().includes(q));
+        if (!ts.length) return '';
+        return `<section class="group" style="--c:${GCOL[g.color] || 'var(--accent)'}">
+          <div class="group-head"><h2><span class="dot" aria-hidden="true"></span>${esc(g.title)}</h2><p>${esc(g.desc || '')}</p></div>
+          <div class="cards">${ts.map((t) => {
+            const s = statsFor(t.id);
+            return `<a class="card" href="#t-${esc(t.id)}">
+              <h3>${esc(t.title)}</h3><span class="en">${esc(t.en)}</span>
+              <div class="meta"><span class="lvl">${esc(t.level)}</span><span>${num(t.n)} câu</span><span>${s.a ? `đã làm ${pct(s.a, t.n)}% · đúng ${pct(s.ok, s.a)}%` : 'chưa làm'}</span></div>
+              <div class="bar" aria-hidden="true"><i style="width:${pct(s.a, t.n)}%"></i></div>
+            </a>`;
+          }).join('')}</div></section>`;
+      }).join('');
+      document.getElementById('groups').innerHTML = html || '<p class="empty">Không có chủ điểm nào khớp. Thử từ khoá khác.</p>';
+    };
+    draw();
+    const inp = document.getElementById('q-search');
+    inp.addEventListener('input', () => { FILTER.q = inp.value; draw(); });
+    main.querySelectorAll('[data-g]').forEach((b) => b.addEventListener('click', () => {
+      FILTER.g = b.dataset.g; main.querySelectorAll('[data-g]').forEach((x) => x.classList.toggle('on', x === b)); draw();
+    }));
+  }
+
+  // ---------- Trang chủ điểm ----------
+  function focusUnits(T) {
+    const out = [];
+    for (const p of T.parts) for (const it of p.items) {
+      if (it.k === 'read') { const qs = it.qs.filter((q) => q.f); if (qs.length) out.push({ ...it, qs }); } else if (it.f) out.push(it);
+    }
+    return out;
+  }
+  const countQ = (units) => units.reduce((s, u) => s + (u.k === 'read' ? u.qs.length : 1), 0);
+  const qsOf = (units) => units.flatMap((u) => (u.k === 'read' ? u.qs : [u]));
+
+  async function vTopic(id, tab) {
+    const I = await getIndex();
+    const T = await getTopic(id);
+    P.last = { id, title: T.title }; save();
+    if (RUN && (RUN.id !== id || RUN.mode !== tab)) RUN = null;
+    if (T.locked) RUN = null;
+    const nAll = T.parts.reduce((s, p) => s + countQ(p.items), 0);
+    const fu = focusUnits(T);
+    const g = I.groups.find((x) => x.topics.some((t) => t.id === id));
+    main.innerHTML = `<div class="wrap">
+      <nav class="crumb" aria-label="Vị trí"><a href="#home">Lộ trình</a><span>›</span><span>${esc(g ? g.title : T.group)}</span></nav>
+      <header class="t-head"><h1>${esc(T.title)}</h1><p class="en">${esc(T.en)} · <span class="lvl">${esc(T.level)}</span></p><p class="sum">${md(T.sum)}</p></header>
+      <nav class="tabs" aria-label="Phần của chủ điểm">
+        <a href="#t-${id}" class="${tab === 't' ? 'on' : ''}">Lý thuyết</a>
+        <a href="#x-${id}" class="${tab === 'x' ? 'on' : ''}">Bài tập đầy đủ <span>${num(nAll)}</span></a>
+        <a href="#f-${id}" class="${tab === 'f' ? 'on' : ''}">Trọng tâm <span>${num(countQ(fu))}</span></a>
+      </nav>
+      <div id="pane"></div>
+    </div>`;
+    const pane = document.getElementById('pane');
+    if (tab === 't') renderTheory(pane, T, id);
+    else if (T.locked) pane.innerHTML = `<div class="doc"><h2>Bài tập dành cho Học viên</h2><p>Tài khoản của bạn có quyền <b>Viewer</b>: xem toàn bộ lý thuyết nhưng chưa làm được bài tập. Muốn làm bài và lưu tiến độ, hãy liên hệ quản trị viên${CFG.email ? ` qua <a href="mailto:${esc(CFG.email)}">${esc(CFG.email)}</a>` : ''} để được nâng lên quyền Học viên.</p><p><a class="btn" href="#t-${id}">Xem lý thuyết</a></p></div>`;
+    else if (tab === 'x') { if (RUN) renderRun(pane, T); else renderParts(pane, T, id); }
+    else { if (!RUN) RUN = { id, mode: 'f', part: -1, page: 0, ans: {}, done: {} }; renderRun(pane, T); }
+  }
+
+  function block(b) {
+    switch (b.t) {
+      case 'p': return `<p>${md(b.x)}</p>`;
+      case 'ul': return `<ul>${b.a.map((x) => `<li>${md(x)}</li>`).join('')}</ul>`;
+      case 'form': return `<div class="formula">${md(b.x)}</div>`;
+      case 'tbl': return `<div class="tbl"><table><thead><tr>${b.h.map((h) => `<th scope="col">${md(h)}</th>`).join('')}</tr></thead><tbody>${b.r.map((r) => `<tr>${r.map((c) => `<td>${md(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+      case 'exs': return `<div class="exs">${b.a.map((e) => `<div class="ex"><span lang="en">${md(e[0])}</span>${e[1] ? `<span class="vi">${md(e[1])}</span>` : ''}${e[2] ? `<span class="note">${md(e[2])}</span>` : ''}</div>`).join('')}</div>`;
+      case 'tip': return `<div class="note-box tip"><span class="lab">Mẹo</span><p>${md(b.x)}</p></div>`;
+      case 'warn': return `<div class="note-box warn"><span class="lab">Lưu ý</span><p>${md(b.x)}</p></div>`;
+      case 'mis': return `<div class="tbl mis"><table><thead><tr><th scope="col">Sai</th><th scope="col">Đúng</th><th scope="col">Vì sao</th></tr></thead><tbody>${b.a.map((r) => `<tr><td>${md(r[0])}</td><td>${md(r[1])}</td><td>${md(r[2] || '')}</td></tr>`).join('')}</tbody></table></div>`;
+      default: return '';
+    }
+  }
+  function renderTheory(pane, T, id) {
+    pane.innerHTML = `<div class="layout">
+      <article class="prose">
+        ${T.sections.map((s, i) => `<section class="sec" id="sec-${i}"><h2>${md(s.title)}</h2>${s.blocks.map(block).join('')}</section>`).join('')}
+        ${T.related && T.related.length ? `<section class="sec"><h2>Chủ điểm liên quan</h2><div class="related">${T.related.map((r) => `<a href="#t-${esc(r.id)}">${esc(r.title)}</a>`).join('')}</div></section>` : ''}
+        <p><a class="btn" href="#x-${id}">Làm bài tập chủ điểm này</a></p>
+      </article>
+      <nav class="toc" aria-label="Mục lục"><b>Mục lục</b>${T.sections.map((s, i) => `<a href="#t-${id}" data-sec="${i}">${esc(s.title.replace(/\*\*/g, ''))}</a>`).join('')}</nav>
+    </div>`;
+    pane.querySelectorAll('[data-sec]').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault(); const el = document.getElementById('sec-' + a.dataset.sec); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+  }
+
+  function renderParts(pane, T, id) {
+    pane.innerHTML = `<div class="parts">${T.parts.map((p, i) => {
+      const qs = qsOf(p.items); let a = 0; let ok = 0;
+      for (const q of qs) if (q.id in P.r) { a++; if (P.r[q.id]) ok++; }
+      return `<div class="part"><h3>${md(p.title)}</h3>${p.note ? `<p>${md(p.note)}</p>` : ''}
+        <div class="meta"><span>${num(qs.length)} câu</span><span>${a ? `đã làm ${a}/${qs.length} · đúng ${ok}` : 'chưa làm'}</span></div>
+        <div class="act"><button class="btn${a ? ' ghost' : ''}" data-part="${i}">${a ? 'Làm tiếp' : 'Bắt đầu'}</button></div></div>`;
+    }).join('')}</div>`;
+    pane.querySelectorAll('[data-part]').forEach((b) => b.addEventListener('click', () => {
+      RUN = { id, mode: 'x', part: Number(b.dataset.part), page: 0, ans: {}, done: {} };
+      renderRun(pane, T); pane.scrollIntoView({ block: 'start' });
+    }));
+  }
+
+  // ---------- Làm bài và chấm ----------
+  function norm(s) {
+    return String(s == null ? '' : s).toLowerCase()
+      .replace(/[‘’ʼ`]/g, "'").replace(/[“”]/g, '"')
+      .replace(/\bwon't\b/g, 'will not').replace(/\bcan't\b/g, 'cannot').replace(/\bcan not\b/g, 'cannot')
+      .replace(/\bshan't\b/g, 'shall not').replace(/n't\b/g, ' not')
+      .replace(/\bi'm\b/g, 'i am').replace(/'re\b/g, ' are').replace(/'ve\b/g, ' have').replace(/'ll\b/g, ' will')
+      .replace(/\s+/g, ' ').trim().replace(/[.!?]+$/g, '').trim();
+  }
+  function grade(q, a) {
+    if (q.k === 'mcq' || q.k === 'err') return a === q.a;
+    if (q.k === 'fill') return Array.isArray(a) && q.b.every((alts, i) => alts.some((x) => norm(x) === norm(a[i])));
+    return false;
+  }
+  const answered = (q, a) => (q.k === 'fill' ? Array.isArray(a) && a.some((x) => String(x || '').trim()) : Number.isInteger(a));
+
+  function unitsOf(T) {
+    if (RUN.mode === 'f') return { title: 'Bộ trọng tâm', note: 'Các câu đặc trưng nhất của chủ điểm, chọn từ bộ đầy đủ.', items: focusUnits(T) };
+    return T.parts[RUN.part];
+  }
+  function stemHTML(q, n, done) {
+    const a = RUN.ans[q.id];
+    if (q.k === 'fill') {
+      let i = 0;
+      return md(q.q).replace(/_{3,}/g, () => {
+        const k = i++; const v = Array.isArray(a) ? a[k] || '' : '';
+        const cls = done ? (q.b[k].some((x) => norm(x) === norm(v)) ? ' right' : ' wrong') : '';
+        return `<input class="blank${cls}" data-q="${esc(q.id)}" data-i="${k}" value="${esc(v)}" aria-label="Câu ${n}, chỗ trống ${k + 1}" autocomplete="off" autocapitalize="off" spellcheck="false"${done ? ' disabled' : ''}>`;
+      });
+    }
+    if (q.k === 'err') {
+      let i = 0;
+      return esc(q.q).replace(/\{(.+?)\}/g, (m, t) => {
+        const k = i++;
+        let cls = ''; if (done) { if (k === q.a) cls = ' right'; else if (a === k) cls = ' wrong'; }
+        return `<button type="button" class="seg${cls}" data-q="${esc(q.id)}" data-v="${k}" aria-pressed="${a === k}"${done ? ' disabled' : ''}>${md(t)}<sup>${ABCD[k]}</sup></button>`;
+      });
+    }
+    return md(q.q).replace(/_{3,}/g, '<span aria-label="chỗ trống">_____</span>');
+  }
+  function solHTML(q) {
+    const a = RUN.ans[q.id]; const ok = grade(q, a); const blank = !answered(q, a);
+    let body = '';
+    if (q.k === 'mcq') {
+      body += `<p>Đáp án: <b>${ABCD[q.a]}. ${md(q.o[q.a])}</b></p>`;
+      if (!ok && Number.isInteger(a) && q.dx && q.dx[a]) body += `<p>Bạn chọn ${ABCD[a]}: ${md(q.dx[a])}</p>`;
+      const why = q.o.map((o, i) => (i !== q.a && q.dx && q.dx[i] ? `<li>${ABCD[i]}. ${md(o)}: ${md(q.dx[i])}</li>` : '')).join('');
+      if (why) body += `<p>Phân tích phương án sai:</p><ul class="why">${why}</ul>`;
+    } else if (q.k === 'fill') {
+      body += `<p>Đáp án: ${q.b.map((alts, i) => `<b>${alts.map(esc).join(' / ')}</b>${q.b.length > 1 ? ` (chỗ ${i + 1})` : ''}`).join('; ')}</p>`;
+    } else if (q.k === 'err') {
+      const segs = [...q.q.matchAll(/\{(.+?)\}/g)].map((m) => m[1]);
+      body += `<p>Phần sai: <b>${ABCD[q.a]}. ${md(segs[q.a] || '')}</b> → sửa: <b>${md(q.fix)}</b></p>`;
+    }
+    return `<div class="sol">
+      <p class="verdict ${ok ? 'ok' : 'no'}">${ok ? 'Đúng' : blank ? 'Chưa trả lời' : 'Sai'}</p>
+      ${q.pt ? `<p class="pt">${esc(q.pt)}</p>` : ''}
+      ${body}
+      ${q.ex ? `<p>${md(q.ex)}</p>` : ''}
+      ${q.vi ? `<p class="vi">Dịch: ${md(q.vi)}</p>` : ''}
+    </div>`;
+  }
+  function qHTML(q, n, done) {
+    const a = RUN.ans[q.id];
+    const st = done ? (grade(q, a) ? ' ok' : ' no') : '';
+    let opts = '';
+    if (q.k === 'mcq') {
+      opts = `<div class="opts" role="group" aria-label="Phương án câu ${n}">${q.o.map((o, i) => {
+        let cls = ''; if (done) { if (i === q.a) cls = ' right'; else if (a === i) cls = ' wrong'; }
+        return `<button type="button" class="opt${cls}" data-q="${esc(q.id)}" data-v="${i}" aria-pressed="${a === i}"${done ? ' disabled' : ''}><span class="L">${ABCD[i]}</span><span>${md(o)}</span></button>`;
+      }).join('')}</div>`;
+    }
+    const hint = q.k === 'err' ? '<p class="meta">Chọn phần gạch chân có lỗi sai.</p>' : '';
+    return `<div class="q${st}" id="q-${esc(q.id)}"><div class="q-top"><span class="q-n">${n}.</span><div class="q-stem">${stemHTML(q, n, done)}</div>${q.f && RUN.mode === 'x' ? '<span class="pill f" title="Câu thuộc bộ trọng tâm">TT</span>' : ''}</div>${hint}${opts}${done ? solHTML(q) : ''}</div>`;
+  }
+
+  function renderRun(pane, T) {
+    const U = unitsOf(T);
+    const units = U.items;
+    if (!units.length) { pane.innerHTML = '<div class="runner"><p class="empty">Chủ điểm này chưa có câu trọng tâm.</p></div>'; return; }
+    const pages = []; for (let i = 0; i < units.length; i += PAGE) pages.push(units.slice(i, i + PAGE));
+    if (RUN.page >= pages.length) RUN.page = 0;
+    const done = !!RUN.done[RUN.page];
+    // số thứ tự câu
+    let start = 1; for (let i = 0; i < RUN.page; i++) start += countQ(pages[i]);
+    let n = start;
+    const body = pages[RUN.page].map((u) => {
+      if (u.k === 'read') {
+        const head = `<div class="passage"><h3>${md(u.title || 'Đọc đoạn văn')}</h3><p lang="en">${md(u.passage)}</p>${done && u.vi ? `<p class="vi meta">Dịch: ${md(u.vi)}</p>` : ''}</div>`;
+        return head + u.qs.map((q) => qHTML(q, n++, done)).join('');
+      }
+      return qHTML(u, n++, done);
+    }).join('');
+    // điểm của cả bài trong lượt này
+    const all = qsOf(units); let g = 0; let ok = 0;
+    pages.forEach((pg, i) => { if (RUN.done[i]) for (const q of qsOf(pg)) { g++; if (grade(q, RUN.ans[q.id])) ok++; } });
+    const pq = qsOf(pages[RUN.page]); const pok = pq.filter((q) => grade(q, RUN.ans[q.id])).length;
+    pane.innerHTML = `<div class="runner">
+      <div class="run-head">
+        <h2>${md(U.title)}</h2>
+        ${RUN.mode === 'x' ? '<button class="btn quiet" data-act="back">← Danh sách bài</button>' : ''}
+      </div>
+      ${U.note ? `<p class="meta">${md(U.note)}</p>` : ''}
+      <div class="score"><span class="pill">${num(all.length)} câu · trang ${RUN.page + 1}/${pages.length}</span>${g ? `<span class="pill ok">Đúng ${ok}</span><span class="pill no">Sai ${g - ok}</span><span class="pill">Đã chấm ${g}/${all.length}</span>` : ''}</div>
+      ${done ? `<p class="score"><span class="pill ok">Trang này: đúng ${pok}/${pq.length}</span></p>` : ''}
+      ${body}
+      <div class="run-foot">
+        <div class="pager" role="group" aria-label="Chọn trang">${pages.map((_, i) => `<button type="button" data-page="${i}" class="${i === RUN.page ? 'on' : ''}${RUN.done[i] ? ' done' : ''}" aria-label="Trang ${i + 1}${RUN.done[i] ? ', đã chấm' : ''}">${i + 1}</button>`).join('')}</div>
+        <div class="row">${done
+          ? `<button class="btn quiet" data-act="redo">Làm lại trang này</button>${RUN.page < pages.length - 1 ? '<button class="btn" data-act="next">Trang tiếp →</button>' : ''}`
+          : '<button class="btn" data-act="submit">Nộp và xem lời giải</button>'}</div>
+      </div>
+    </div>`;
+    const rerender = (top) => { renderRun(pane, T); if (top) pane.scrollIntoView({ block: 'start' }); };
+    pane.querySelectorAll('.opt, .seg').forEach((b) => b.addEventListener('click', () => {
+      RUN.ans[b.dataset.q] = Number(b.dataset.v);
+      const grp = b.classList.contains('opt') ? b.parentElement.querySelectorAll('.opt') : b.closest('.q-stem').querySelectorAll('.seg');
+      grp.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    }));
+    pane.querySelectorAll('.blank').forEach((inp) => inp.addEventListener('input', () => {
+      const q = all.find((x) => x.id === inp.dataset.q);
+      const arr = Array.isArray(RUN.ans[q.id]) ? RUN.ans[q.id] : new Array(q.b.length).fill('');
+      arr[Number(inp.dataset.i)] = inp.value; RUN.ans[q.id] = arr;
+    }));
+    pane.querySelectorAll('[data-page]').forEach((b) => b.addEventListener('click', () => { RUN.page = Number(b.dataset.page); rerender(true); }));
+    const act = (name, fn) => { const b = pane.querySelector(`[data-act="${name}"]`); if (b) b.addEventListener('click', fn); };
+    act('back', () => { RUN = null; renderParts(pane, T, T.id); pane.scrollIntoView({ block: 'start' }); });
+    act('submit', () => {
+      const miss = pq.filter((q) => !answered(q, RUN.ans[q.id])).length;
+      RUN.done[RUN.page] = true;
+      const ch = {}; for (const q of pq) { P.r[q.id] = grade(q, RUN.ans[q.id]) ? 1 : 0; ch[q.id] = P.r[q.id]; }
+      save(ch);
+      const k = pq.filter((q) => grade(q, RUN.ans[q.id])).length;
+      toast(`Đúng ${k}/${pq.length}${miss ? `, bỏ trống ${miss}` : ''}. Xem lời giải bên dưới từng câu.`);
+      rerender(true);
+    });
+    act('redo', () => { for (const q of pq) delete RUN.ans[q.id]; delete RUN.done[RUN.page]; rerender(true); });
+    act('next', () => { RUN.page++; rerender(true); });
+  }
+
+  // ---------- Hướng dẫn, văn bản pháp lý ----------
+  const OWNER = CFG.operator ? esc(CFG.operator) : '<span class="fill">[TÊN CÁ NHÂN / TỔ CHỨC CHỦ SỞ HỮU]</span>';
+  const EMAIL = CFG.email ? `<a href="mailto:${esc(CFG.email)}">${esc(CFG.email)}</a>` : '<span class="fill">[EMAIL LIÊN HỆ]</span>';
+  const DATE = '16/11/2026';
+  const DOCS = {
+    guide: { title: 'Cách học hiệu quả', html: () => `
+      <p>Mỗi chủ điểm có ba phần. Bạn nên học theo thứ tự dưới đây.</p>
+      <ul>
+        <li><b>Lý thuyết</b>: công thức, cách dùng, ví dụ Anh – Việt, mẹo và bảng lỗi hay gặp. Đọc hết một lượt trước khi làm bài.</li>
+        <li><b>Bài tập đầy đủ</b>: chia thành nhiều bài theo dạng (trắc nghiệm ABCD, điền từ, tìm lỗi sai, đọc hiểu). Mỗi trang 10 câu; nộp trang để xem lời giải ngay.</li>
+        <li><b>Trọng tâm</b>: khoảng 10% số câu, là những câu đặc trưng và hay gặp nhất. Dùng để ôn nhanh trước khi thi.</li>
+      </ul>
+      <p>Sau khi nộp, mỗi câu hiện đáp án đúng, giải thích, phân tích từng phương án sai và bản dịch tiếng Việt. Câu bỏ trống được tính là sai.</p>
+      <h2>Tiến độ của bạn</h2>
+      ${CFG.secure ? '<p>Kết quả từng câu được lưu trong trình duyệt và tự đồng bộ lên máy chủ theo tài khoản Học viên của bạn, nên bạn đổi thiết bị vẫn giữ được tiến độ. Tài khoản Viewer chỉ xem lý thuyết, không lưu tiến độ.</p>' : '<p>Website không có tài khoản. Kết quả từng câu được lưu trong trình duyệt bạn đang dùng (bộ nhớ cục bộ). Nếu bạn xoá dữ liệu trình duyệt, dùng chế độ ẩn danh hoặc đổi thiết bị, tiến độ sẽ không còn.</p>'}
+      <div id="reset-area"><button class="btn quiet" data-act="ask-reset">Xoá toàn bộ tiến độ</button></div>` },
+    terms: { title: 'Điều khoản sử dụng', html: () => `
+      <p>Hiệu lực từ ${DATE}. Website ${SITE} (gọi là "Website") do ${OWNER} biên soạn và vận hành. Khi truy cập Website, bạn đồng ý với các điều khoản dưới đây.</p>
+      <h2>1. Dịch vụ</h2>
+      <p>Website cung cấp miễn phí bài giảng và bài tập ngữ pháp tiếng Anh để tự học. Website không phải cơ sở giáo dục hay đơn vị tổ chức thi và không cấp chứng chỉ.${CFG.secure ? ' Website chỉ dành cho người được quản trị viên cấp quyền; quản trị viên có thể từ chối, thay đổi hoặc thu hồi quyền truy cập bất kỳ lúc nào mà không cần nêu lý do.' : ''}</p>
+      <h2>2. Quyền sử dụng</h2>
+      <ul>
+        <li>Bạn được xem và làm bài cho mục đích học tập cá nhân, không thương mại.${CFG.secure ? ' Tài khoản gắn với email của bạn, không được chia sẻ link đăng nhập hay cho người khác dùng chung.' : ''}</li>
+        <li>Không sao chép hàng loạt, thu thập tự động, bán lại, đóng gói lại hoặc khai thác thương mại nội dung khi chưa có đồng ý bằng văn bản của chủ sở hữu.</li>
+        <li>Giáo viên được dùng từng phần nhỏ nội dung trong lớp học, với điều kiện ghi rõ nguồn là ${SITE}.</li>
+      </ul>
+      <h2>3. Nội dung</h2>
+      <p>Nội dung được biên soạn cẩn thận nhưng có thể còn sai sót. Nếu phát hiện lỗi, vui lòng báo qua ${EMAIL}. Chủ sở hữu có quyền sửa đổi, bổ sung hoặc ngừng cung cấp bất kỳ phần nào của Website mà không cần báo trước.</p>
+      <h2>4. Liên kết ngoài</h2>
+      <p>Website có thể tải phông chữ từ Google Fonts và được lưu trữ trên dịch vụ của bên thứ ba. Chủ sở hữu không chịu trách nhiệm về nội dung và chính sách của các dịch vụ đó.</p>
+      <h2>5. Luật áp dụng</h2>
+      <p>Điều khoản này được điều chỉnh theo pháp luật Việt Nam. Tranh chấp phát sinh trước hết được giải quyết bằng thương lượng.</p>
+      <h2>6. Thay đổi điều khoản</h2>
+      <p>Điều khoản có thể được cập nhật; ngày hiệu lực ở đầu trang sẽ thay đổi tương ứng. Việc tiếp tục sử dụng Website sau khi cập nhật đồng nghĩa với việc bạn chấp nhận điều khoản mới.</p>` },
+    privacy: { title: 'Chính sách quyền riêng tư', html: () => `
+      <p>Hiệu lực từ ${DATE}. Chính sách này giải thích Website xử lý thông tin của bạn như thế nào, phù hợp với Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân.</p>
+      ${CFG.secure ? `<h2>1. Dữ liệu được thu thập</h2>
+      <ul>
+        <li><b>Email</b>, họ tên và lời nhắn (nếu bạn nhập) khi gửi yêu cầu truy cập; quyền được cấp; thời điểm đăng nhập và thao tác quản trị (nhật ký bảo mật).</li>
+        <li><b>Tiến độ học</b> của tài khoản Học viên (câu nào đúng, câu nào sai, chủ điểm học gần nhất).</li>
+        <li>Website không dùng cookie theo dõi, không gắn công cụ quảng cáo hay phân tích hành vi, không bán hay chia sẻ dữ liệu cho bên thứ ba.</li>
+      </ul>
+      <h2>2. Mục đích và nơi lưu</h2>
+      <p>Dữ liệu chỉ dùng để xác thực, cấp quyền, gửi email đăng nhập / thông báo và lưu tiến độ học. Dữ liệu lưu trong Google Sheets và Google Drive của quản trị viên, máy chủ chạy trên Google Apps Script; email gửi qua Gmail. Trình duyệt của bạn giữ phiên đăng nhập và bản sao tiến độ trong bộ nhớ cục bộ; đăng xuất sẽ xoá các dữ liệu này trên thiết bị.</p>
+      <h2>2a. Quyền của bạn</h2>
+      <p>Bạn có quyền yêu cầu xem, sửa hoặc xoá dữ liệu của mình và rút lại sự đồng ý bằng cách gửi email tới ${EMAIL}. Yêu cầu sẽ được xử lý trong thời gian sớm nhất. Khi tài khoản bị thu hồi hoặc bạn yêu cầu xoá, tiến độ học được xoá khỏi máy chủ.</p>` : `<h2>1. Website không thu thập dữ liệu cá nhân</h2>
+      <p>Website không có tài khoản, không có biểu mẫu đăng ký, không dùng cookie theo dõi, không gắn công cụ quảng cáo hay phân tích hành vi.</p>
+      <h2>2. Dữ liệu lưu trên thiết bị của bạn</h2>
+      <p>Kết quả làm bài (câu nào đúng, câu nào sai) và chủ điểm bạn học gần nhất được lưu trong bộ nhớ cục bộ (localStorage) của trình duyệt. Dữ liệu này không được gửi về máy chủ nào. Bạn có thể xoá bất kỳ lúc nào trong trang <a href="#guide">Cách học</a> hoặc bằng cách xoá dữ liệu trang web trong trình duyệt.</p>`}
+      <h2>3. Dịch vụ bên thứ ba</h2>
+      <ul>
+        <li><b>Phông chữ</b>: trình duyệt tải phông từ Google Fonts; Google có thể ghi nhận địa chỉ IP và thông tin trình duyệt theo chính sách của Google.</li>
+        <li><b>Lưu trữ</b>: nhà cung cấp dịch vụ lưu trữ trang (ví dụ GitHub Pages, Netlify) có thể ghi nhật ký truy cập kỹ thuật như địa chỉ IP và thời điểm truy cập theo chính sách của họ.</li>
+      </ul>
+      <h2>4. Trẻ em</h2>
+      <p>Website phù hợp cho mọi lứa tuổi.${CFG.secure ? ' Người dưới 16 tuổi cần cha mẹ hoặc người giám hộ đồng ý trước khi gửi email đăng ký.' : ' Website không thu thập thông tin của trẻ em.'} Người dưới 16 tuổi nên sử dụng dưới sự hướng dẫn của cha mẹ hoặc thầy cô.</p>
+      <h2>5. Liên hệ</h2>
+      <p>Mọi câu hỏi về quyền riêng tư xin gửi tới ${EMAIL}.</p>` },
+    disclaimer: { title: 'Miễn trừ trách nhiệm', html: () => `
+      <ul>
+        <li>Nội dung chỉ mang tính tham khảo cho việc tự học, không thay thế giáo trình chính thức, giáo viên hay tư vấn chuyên môn.</li>
+        <li>Chủ sở hữu không cam kết về điểm số, kết quả thi hay mức độ tiến bộ khi sử dụng Website.</li>
+        <li>Chủ sở hữu không chịu trách nhiệm về thiệt hại phát sinh từ việc sử dụng hoặc không thể sử dụng Website, kể cả việc mất tiến độ học lưu trên trình duyệt.</li>
+        <li>Website do ${OWNER} vận hành.</li>
+        <li>Tên các kỳ thi như IELTS, TOEIC, TOEFL là nhãn hiệu của chủ sở hữu tương ứng. Website không liên kết và không được các tổ chức đó xác nhận.</li>
+      </ul>` },
+    copyright: { title: 'Bản quyền nội dung', html: () => `
+      <p>Bài giảng và bài tập trên Website do ${OWNER} biên soạn, tổng hợp và chuyển thể cho mục đích giáo dục phi thương mại.</p>
+      <ul>
+        <li>Câu hỏi được chuyển thể và diễn đạt lại từ tài liệu ngữ pháp tham khảo; tên người, địa danh, năm và số liệu trong câu đã được thay đổi.</li>
+        <li>Phần giải thích, phân tích phương án sai, bản dịch và cách trình bày là sản phẩm biên soạn riêng của Website.</li>
+        <li>Ví dụ ngắn trong lý thuyết là câu minh hoạ thông dụng của ngôn ngữ, không trích nguyên văn tác phẩm nào.</li>
+      </ul>
+      <p>Nếu bạn là chủ sở hữu quyền và cho rằng nội dung nào trên Website ảnh hưởng tới quyền của mình, xin gửi yêu cầu kèm thông tin chứng minh tới ${EMAIL}. Nội dung liên quan sẽ được xem xét và gỡ bỏ hoặc chỉnh sửa trong thời gian sớm nhất.</p>
+      <p>© ${new Date().getFullYear()} ${SITE}. Bảo lưu mọi quyền đối với phần biên soạn.</p>` },
+  };
+  function vDoc(k) {
+    const d = DOCS[k];
+    main.innerHTML = `<div class="wrap"><article class="doc"><nav class="crumb"><a href="#home">Lộ trình</a><span>›</span><span>${esc(d.title)}</span></nav><h1>${esc(d.title)}</h1>${d.html()}</article></div>`;
+    const area = document.getElementById('reset-area');
+    if (area) {
+      area.addEventListener('click', (e) => {
+        const b = e.target.closest('[data-act]'); if (!b) return;
+        if (b.dataset.act === 'ask-reset') area.innerHTML = `<div class="confirm"><span>Xoá kết quả của tất cả các câu đã làm? Không thể hoàn tác.</span><button class="btn" data-act="do-reset">Xoá tiến độ</button><button class="btn quiet" data-act="cancel">Giữ lại</button></div>`;
+        if (b.dataset.act === 'cancel') area.innerHTML = '<button class="btn quiet" data-act="ask-reset">Xoá toàn bộ tiến độ</button>';
+        if (b.dataset.act === 'do-reset') { P = { r: {}, last: null }; save(); DIRTY = {}; if (CFG.secure && canEx()) api('resetProgress').catch(() => {}); RUN = null; area.innerHTML = '<p>Đã xoá tiến độ.</p>'; toast('Đã xoá tiến độ'); }
+      });
+    }
+  }
+
+  // ---------- Đăng nhập, xin quyền (bản chính thức) ----------
+  function vSignIn(msg) {
+    main.innerHTML = `<div class="wrap"><section class="auth">
+      <h1>${SITE}</h1>
+      <p class="lead">Website học ngữ pháp tiếng Anh dành cho học viên được mời. Nhập email để nhận link đăng nhập. Không cần mật khẩu.</p>
+      ${msg ? `<p class="auth-msg">${msg}</p>` : ''}
+      <form id="f-in" class="auth-form">
+        <label>Email<input type="email" name="email" required autocomplete="email" placeholder="ban@gmail.com"></label>
+        <details><summary>Lần đầu? Thêm tên và lời nhắn cho quản trị viên</summary>
+          <label>Họ tên<input name="name" maxlength="80" autocomplete="name"></label>
+          <label>Lời nhắn<textarea name="note" maxlength="300" rows="3" placeholder="Ví dụ: em là học viên lớp IELTS tối thứ 3"></textarea></label>
+        </details>
+        <button class="btn" type="submit">Gửi link đăng nhập</button>
+      </form>
+      <p class="muted">Nếu email chưa có quyền, hệ thống gửi yêu cầu tới quản trị viên. Bạn sẽ nhận email khi được duyệt.</p>
+    </section></div>`;
+    const f = document.getElementById('f-in');
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const b = f.querySelector('button'); b.disabled = true; b.textContent = 'Đang gửi...';
+      const fd = new FormData(f);
+      try {
+        const r = await api('requestLogin', { email: fd.get('email'), name: fd.get('name') || '', note: fd.get('note') || '' });
+        const M = {
+          sent: 'Đã gửi link đăng nhập tới email của bạn (hết hạn sau 15 phút). Kiểm tra cả thư mục Spam / Quảng cáo.',
+          requested: 'Email này chưa có quyền. Yêu cầu của bạn đã được gửi tới quản trị viên; bạn sẽ nhận email khi được duyệt.',
+          pending: 'Yêu cầu của bạn đang chờ quản trị viên duyệt.',
+          revoked: 'Quyền truy cập của email này đã bị thu hồi. Liên hệ quản trị viên nếu cần.',
+          invite_only: 'Hiện chỉ người được quản trị viên mời mới dùng được website.',
+        };
+        vSignIn(esc(M[r.status] || 'Đã gửi.'));
+      } catch (x) { vSignIn(esc(x.message || 'Không gửi được, thử lại sau.')); }
+    });
+  }
+  async function vLoginLink(token) {
+    main.innerHTML = '<div class="wrap"><p class="loading">Đang đăng nhập...</p></div>';
+    try {
+      const r = await api('verifyLogin', { token });
+      setAuth({ session: r.session, user: r.user });
+      history.replaceState(null, '', location.pathname + '#home');
+      await pullProgress();
+      toast('Đăng nhập thành công');
+      route();
+    } catch (x) { history.replaceState(null, '', location.pathname); vSignIn(esc(x.message)); }
+  }
+
+  // ---------- Quản trị (Editor, Owner) ----------
+  const ROLE_OPTS = { learner: 'Học viên', viewer: 'Viewer (chỉ xem lý thuyết)', editor: 'Editor' };
+  async function vAdmin(data) {
+    const own = role() === 'owner';
+    if (!data) { main.innerHTML = '<div class="wrap"><p class="loading">Đang tải danh sách...</p></div>'; try { data = await api('listUsers'); } catch (x) { main.innerHTML = `<div class="wrap doc"><p>${esc(x.message)}</p></div>`; return; } }
+    const roles = own ? ['learner', 'viewer', 'editor'] : ['learner', 'viewer'];
+    const opt = (sel) => roles.map((r) => `<option value="${r}"${r === sel ? ' selected' : ''}>${ROLE_OPTS[r]}</option>`).join('');
+    const canTouch = (u) => u.role !== 'owner' && (own || u.role === 'viewer' || u.role === 'learner');
+    main.innerHTML = `<div class="wrap admin">
+      <nav class="crumb"><a href="#home">Lộ trình</a><span>›</span><span>Quản trị</span></nav>
+      <h1>Quản trị người dùng</h1>
+      <section class="adm"><h2>Yêu cầu chờ duyệt <span class="pill">${data.requests.length}</span></h2>
+        ${data.requests.length ? `<div class="tbl"><table><thead><tr><th>Email</th><th>Tên, lời nhắn</th><th>Gửi lúc</th><th>Duyệt</th></tr></thead><tbody>${data.requests.map((r) => `<tr>
+          <td>${esc(r.requester)}</td><td>${esc(r.name || '')}${r.note ? `<br><span class="muted">${esc(r.note)}</span>` : ''}</td><td>${esc(String(r.created_at).slice(0, 16).replace('T', ' '))}</td>
+          <td class="row-act"><select data-req-role="${esc(r.id)}">${opt('learner')}</select><button class="btn" data-approve="${esc(r.id)}">Duyệt</button><button class="btn quiet" data-deny="${esc(r.id)}">Từ chối</button></td></tr>`).join('')}</tbody></table></div>` : '<p class="muted">Không có yêu cầu nào.</p>'}
+      </section>
+      <section class="adm"><h2>Mời người dùng</h2>
+        <form id="f-inv" class="inv">
+          <label>Email (nhiều email cách nhau bằng dấu phẩy hoặc xuống dòng, tối đa 50)<textarea name="emails" rows="3" required></textarea></label>
+          <label>Quyền<select name="role">${opt('learner')}</select></label>
+          <label>Lời nhắn (không bắt buộc)<input name="message" maxlength="500"></label>
+          <button class="btn" type="submit">Gửi lời mời</button>
+        </form>
+        <p class="muted">Người được mời nhận email có link đăng nhập dùng 1 lần, hiệu lực 72 giờ. ${own ? '' : 'Owner sẽ được báo về lời mời của bạn.'}</p>
+      </section>
+      <section class="adm"><h2>Người dùng <span class="pill">${data.users.length}</span></h2>
+        <div class="tbl"><table><thead><tr><th>Email</th><th>Quyền</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody>${data.users.map((u) => `<tr>
+          <td>${esc(u.email)}</td><td>${esc(u.role === 'owner' ? 'Owner' : (ROLE_OPTS[u.role] || u.role))}</td><td>${u.status === 'active' ? 'Đang dùng' : 'Đã thu hồi'}</td>
+          <td class="row-act">${canTouch(u) ? `<select data-set="${esc(u.email)}">${opt(u.status === 'active' ? u.role : '')}${u.status === 'active' ? '' : '<option value="" selected>—</option>'}</select>${u.status === 'active' ? `<button class="btn quiet" data-revoke="${esc(u.email)}">Thu hồi</button>` : ''}` : '<span class="muted">—</span>'}</td></tr>`).join('')}</tbody></table></div>
+      </section>
+      ${own && data.config ? `<section class="adm"><h2>Cấu hình (chỉ Owner)</h2>
+        <label class="chk"><input type="checkbox" id="c-io"${data.config.invite_only === 'true' ? ' checked' : ''}> Chỉ người được mời (người lạ không gửi được yêu cầu)</label>
+        <label class="chk"><input type="checkbox" id="c-ne"${data.config.notify_editors_on_access === 'true' ? ' checked' : ''}> Gửi email duyệt yêu cầu cho cả Editor</label>
+      </section>` : ''}
+    </div>`;
+    const run = async (fn, ok) => { try { const d = await fn(); toast(ok); vAdmin(d.list || d); } catch (x) { toast(x.message); } };
+    main.querySelectorAll('[data-approve]').forEach((b) => b.addEventListener('click', () => { const id = b.dataset.approve; const r = main.querySelector(`[data-req-role="${id}"]`).value; run(() => api('decideRequest', { id, choice: r }), 'Đã duyệt và gửi email mời'); }));
+    main.querySelectorAll('[data-deny]').forEach((b) => b.addEventListener('click', () => run(() => api('decideRequest', { id: b.dataset.deny, choice: 'deny' }), 'Đã từ chối')));
+    main.querySelectorAll('[data-set]').forEach((s) => s.addEventListener('change', () => { if (s.value) run(() => api('setRole', { email: s.dataset.set, role: s.value }), 'Đã đổi quyền'); }));
+    main.querySelectorAll('[data-revoke]').forEach((b) => b.addEventListener('click', () => { if (confirm('Thu hồi quyền của ' + b.dataset.revoke + '?')) run(() => api('setRole', { email: b.dataset.revoke, role: 'revoke' }), 'Đã thu hồi'); }));
+    const fi = document.getElementById('f-inv');
+    fi.addEventListener('submit', async (e) => {
+      e.preventDefault(); const fd = new FormData(fi); const btn = fi.querySelector('button'); btn.disabled = true;
+      try {
+        const r = await api('inviteUsers', { emails: fd.get('emails'), role: fd.get('role'), message: fd.get('message') });
+        const L = { invited: 'đã mời', exists: 'đã có quyền này', invalid: 'email sai', forbidden: 'không đủ quyền', granted_no_mail: 'đã cấp quyền, chưa gửi được email' };
+        toast(r.results.map((x) => x.email + ': ' + (L[x.status] || x.status)).join(' · '));
+        vAdmin(r.list);
+      } catch (x) { toast(x.message); btn.disabled = false; }
+    });
+    const cfgChange = () => run(() => api('updateConfig', { invite_only: document.getElementById('c-io').checked, notify_editors_on_access: document.getElementById('c-ne').checked }), 'Đã lưu cấu hình');
+    ['c-io', 'c-ne'].forEach((id) => { const el = document.getElementById(id); if (el) el.addEventListener('change', cfgChange); });
+  }
+
+  drawAcct();
+  if (CFG.secure && AUTH) {
+    api('me').then((d) => { setAuth({ session: AUTH.session, user: d.user }); pullProgress(); }).catch(() => { /* ngoại tuyến hoặc hết hạn */ });
+  }
+  route();
+})();
+
+</script>
+</body>
+</html>
