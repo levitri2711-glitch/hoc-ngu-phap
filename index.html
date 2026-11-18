@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Học ngữ pháp</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Ngữ pháp tiếng Anh cho người Việt: 76 chủ điểm, lý thuyết đầy đủ, 19.150 câu bài tập có giải thích chi tiết.">
+<meta name="description" content="Ngữ pháp tiếng Anh cho người Việt: 88 chủ điểm, lý thuyết đầy đủ, 19.150 câu bài tập có giải thích chi tiết.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lexend:wght@500;600;700&family=Roboto+Mono:wght@400;500&display=swap">
@@ -388,6 +388,13 @@ body.focus .wrap.topic { max-width: 760px; }
 body.focus .toast { bottom: calc(140px + env(safe-area-inset-bottom, 0px)); }
 @media (max-width: 420px) { .tabs { gap: 0; } .tabs a { padding: 10px 9px; font-size: .93rem; } }
 
+/* V2: xem thêm, bảng phân biệt, đoạn giải thích */
+.see { font-size: .93rem; color: var(--muted); }
+.see a { font-weight: 500; }
+.cmp th[scope="row"] { background: var(--soft); font-family: var(--f-body); font-size: .93rem; font-weight: 600; white-space: nowrap; }
+.sec h3 { font-size: 1.02rem; margin-top: 6px; }
+.prose p { line-height: 1.7; }
+
 </style>
 <meta name="robots" content="noindex">
 </head>
@@ -425,7 +432,7 @@ body.focus .toast { bottom: calc(140px + env(safe-area-inset-bottom, 0px)); }
   const GCOL = { blue: 'var(--g-blue)', green: 'var(--g-green)', orange: 'var(--g-orange)', purple: 'var(--g-purple)', teal: 'var(--g-teal)', rose: 'var(--g-rose)' };
   const main = document.getElementById('main');
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const md = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`(.+?)`/g, '<code>$1</code>').replace(/~~(.+?)~~/g, '<del>$1</del>').replace(/\n/g, '<br>');
+  const md = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`(.+?)`/g, '<code>$1</code>').replace(/~~(.+?)~~/g, '<del>$1</del>').replace(/\[\[([a-z0-9-]+)\|(.+?)\]\]/g, '<a href="#t-$1">$2</a>').replace(/\n/g, '<br>');
   const num = (n) => Number(n).toLocaleString('vi-VN');
   const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
 
@@ -581,8 +588,8 @@ body.focus .toast { bottom: calc(140px + env(safe-area-inset-bottom, 0px)); }
             const s = statsFor(t.id); const p = pct(s.a, t.n);
             return `<a class="card${p >= 100 ? ' full' : ''}" href="#t-${esc(t.id)}">
               <span class="c-main"><span class="c-t">${esc(t.title)}</span><span class="en">${esc(t.en)}</span></span>
-              <span class="c-side"><span class="lvl">${esc(t.level)}</span><span class="c-p">${s.a ? `${p}%` : `${num(t.n)} câu`}</span></span>
-              <span class="bar" aria-hidden="true"><i style="width:${p}%"></i></span>
+              <span class="c-side"><span class="lvl">${esc(t.level)}</span><span class="c-p">${!t.n ? 'Tra cứu' : s.a ? `${p}%` : `${num(t.n)} câu`}</span></span>
+              ${t.n ? `<span class="bar" aria-hidden="true"><i style="width:${p}%"></i></span>` : ''}
             </a>`;
           }).join('')}</div></section>`;
       }).join('');
@@ -613,16 +620,18 @@ body.focus .toast { bottom: calc(140px + env(safe-area-inset-bottom, 0px)); }
     if (RUN && (RUN.id !== id || RUN.mode !== tab)) RUN = null;
     if (T.locked) RUN = null;
     const nAll = T.parts.reduce((s, p) => s + countQ(p.items), 0);
+    const HUB = id.startsWith('w-');
+    if (HUB) tab = 't';
     const fu = focusUnits(T);
     const g = I.groups.find((x) => x.topics.some((t) => t.id === id));
     main.innerHTML = `<div class="wrap topic">
       <nav class="crumb" aria-label="Vị trí"><a href="#home">← Lộ trình</a><span class="crumb-g">${esc(g ? g.title : T.group)}</span></nav>
       <header class="t-head"><h1>${esc(T.title)}</h1><p class="en">${esc(T.en)} · <span class="lvl">${esc(T.level)}</span></p>${tab === 't' ? `<details class="sum"><summary>Tóm tắt chủ điểm</summary><p>${md(T.sum)}</p></details>` : ''}</header>
-      <nav class="tabs" aria-label="Phần của chủ điểm">
+      ${HUB ? '' : `<nav class="tabs" aria-label="Phần của chủ điểm">
         <a href="#t-${id}" class="${tab === 't' ? 'on' : ''}">Lý thuyết</a>
         <a href="#x-${id}" class="${tab === 'x' ? 'on' : ''}">Bài tập <span>${num(nAll)}</span></a>
         <a href="#f-${id}" class="${tab === 'f' ? 'on' : ''}">Trọng tâm <span>${num(countQ(fu))}</span></a>
-      </nav>
+      </nav>`}
       <div id="pane"></div>
     </div>`;
     const pane = document.getElementById('pane');
@@ -641,6 +650,9 @@ body.focus .toast { bottom: calc(140px + env(safe-area-inset-bottom, 0px)); }
       case 'exs': return `<div class="exs">${b.a.map((e) => `<div class="ex"><span lang="en">${md(e[0])}</span>${e[1] ? `<span class="vi">${md(e[1])}</span>` : ''}${e[2] ? `<span class="note">${md(e[2])}</span>` : ''}</div>`).join('')}</div>`;
       case 'tip': return `<div class="note-box tip"><span class="lab">Mẹo</span><p>${md(b.x)}</p></div>`;
       case 'warn': return `<div class="note-box warn"><span class="lab">Lưu ý</span><p>${md(b.x)}</p></div>`;
+      case 'h': return `<h3>${md(b.x)}</h3>`;
+      case 'see': return `<p class="see">Xem thêm: <a href="#t-${esc(b.id)}">${md(b.x)}</a></p>`;
+      case 'cmp': return `<div class="tbl cmp"><table><thead><tr>${b.h.map((h) => `<th scope="col">${md(h)}</th>`).join('')}</tr></thead><tbody>${b.r.map((r) => `<tr>${r.map((c, i) => (i === 0 ? `<th scope="row">${md(c)}</th>` : `<td>${md(c)}</td>`)).join('')}</tr>`).join('')}</tbody></table></div>`;
       case 'mis': return `<div class="tbl mis"><table><thead><tr><th scope="col">Sai</th><th scope="col">Đúng</th><th scope="col">Vì sao</th></tr></thead><tbody>${b.a.map((r) => `<tr><td>${md(r[0])}</td><td>${md(r[1])}</td><td>${md(r[2] || '')}</td></tr>`).join('')}</tbody></table></div>`;
       default: return '';
     }
