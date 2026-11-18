@@ -391,9 +391,26 @@ body.focus .toast { bottom: calc(140px + env(safe-area-inset-bottom, 0px)); }
 /* V2: xem thêm, bảng phân biệt, đoạn giải thích */
 .see { font-size: .93rem; color: var(--muted); }
 .see a { font-weight: 500; }
-.cmp th[scope="row"] { background: var(--soft); font-family: var(--f-body); font-size: .93rem; font-weight: 600; white-space: nowrap; }
+.cmp th[scope="row"] { background: var(--soft); font-family: var(--f-body); font-size: .93rem; font-weight: 600; }
 .sec h3 { font-size: 1.02rem; margin-top: 6px; }
 .prose p { line-height: 1.7; }
+
+/* Bảng V3: không bóp méo cột, không cuộn ngang trên điện thoại */
+.tbl th, .tbl td { min-width: 7.5rem; overflow-wrap: break-word; }
+.tbl.wide th, .tbl.wide td { width: calc(100% / var(--n)); }
+.tbl td:empty::after { content: '–'; color: var(--muted); }
+.tbl code { white-space: normal; overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  .tbl.wide { overflow: visible; border: 0; background: transparent; }
+  .tbl.wide table, .tbl.wide tbody, .tbl.wide tr, .tbl.wide td, .tbl.wide th[scope="row"] { display: block; width: auto; min-width: 0; }
+  .tbl.wide thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .tbl.wide tr { border: 1px solid var(--line); border-radius: 10px; background: var(--sheet); margin-bottom: 10px; overflow: hidden; }
+  .tbl.wide td, .tbl.wide th[scope="row"] { border-bottom: 1px solid var(--line); padding: 8px 12px; }
+  .tbl.wide tr > :last-child { border-bottom: 0; }
+  .tbl.wide tr > :first-child { background: var(--soft); font-weight: 600; }
+  .tbl.wide td[data-l]::before, .tbl.wide th[data-l]::before { content: attr(data-l); display: block; font-family: var(--f-display); font-size: .74rem; font-weight: 600; color: var(--muted); text-transform: none; margin-bottom: 2px; }
+  .tbl.wide td:empty { display: none; }
+}
 
 </style>
 <meta name="robots" content="noindex">
@@ -433,6 +450,14 @@ body.focus .toast { bottom: calc(140px + env(safe-area-inset-bottom, 0px)); }
   const main = document.getElementById('main');
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const md = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`(.+?)`/g, '<code>$1</code>').replace(/~~(.+?)~~/g, '<del>$1</del>').replace(/\[\[([a-z0-9-]+)\|(.+?)\]\]/g, '<a href="#t-$1">$2</a>').replace(/\n/g, '<br>');
+  // Bảng: trên điện thoại, bảng từ 3 cột trở lên hiển thị thành thẻ xếp dọc (mỗi ô kèm nhãn cột).
+  const plain = (s) => String(s || '').replace(/\*\*|`|~~/g, '').replace(/\[\[[a-z0-9-]+\|(.+?)\]\]/g, '$1');
+  const table = (h, rows, cls, rowHead) => {
+    const n = Math.max(h.length, ...rows.map((r) => r.length));
+    const lab = (i) => (h[i] ? ` data-l="${esc(plain(h[i]))}"` : '');
+    const body = rows.map((r) => `<tr>${r.map((c, i) => (rowHead && i === 0 ? `<th scope="row"${lab(i)}>${md(c)}</th>` : `<td${lab(i)}>${c === '' ? '' : md(c)}</td>`)).join('')}</tr>`).join('');
+    return `<div class="tbl${cls}${n >= 3 ? ' wide' : ''}" style="--n:${n}"><table><thead><tr>${h.map((x) => `<th scope="col">${md(x)}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table></div>`;
+  };
   const num = (n) => Number(n).toLocaleString('vi-VN');
   const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
 
@@ -646,14 +671,14 @@ body.focus .toast { bottom: calc(140px + env(safe-area-inset-bottom, 0px)); }
       case 'p': return `<p>${md(b.x)}</p>`;
       case 'ul': return `<ul>${b.a.map((x) => `<li>${md(x)}</li>`).join('')}</ul>`;
       case 'form': return `<div class="formula">${md(b.x)}</div>`;
-      case 'tbl': return `<div class="tbl"><table><thead><tr>${b.h.map((h) => `<th scope="col">${md(h)}</th>`).join('')}</tr></thead><tbody>${b.r.map((r) => `<tr>${r.map((c) => `<td>${md(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+      case 'tbl': return table(b.h, b.r, '', false);
       case 'exs': return `<div class="exs">${b.a.map((e) => `<div class="ex"><span lang="en">${md(e[0])}</span>${e[1] ? `<span class="vi">${md(e[1])}</span>` : ''}${e[2] ? `<span class="note">${md(e[2])}</span>` : ''}</div>`).join('')}</div>`;
       case 'tip': return `<div class="note-box tip"><span class="lab">Mẹo</span><p>${md(b.x)}</p></div>`;
       case 'warn': return `<div class="note-box warn"><span class="lab">Lưu ý</span><p>${md(b.x)}</p></div>`;
       case 'h': return `<h3>${md(b.x)}</h3>`;
       case 'see': return `<p class="see">Xem thêm: <a href="#t-${esc(b.id)}">${md(b.x)}</a></p>`;
-      case 'cmp': return `<div class="tbl cmp"><table><thead><tr>${b.h.map((h) => `<th scope="col">${md(h)}</th>`).join('')}</tr></thead><tbody>${b.r.map((r) => `<tr>${r.map((c, i) => (i === 0 ? `<th scope="row">${md(c)}</th>` : `<td>${md(c)}</td>`)).join('')}</tr>`).join('')}</tbody></table></div>`;
-      case 'mis': return `<div class="tbl mis"><table><thead><tr><th scope="col">Sai</th><th scope="col">Đúng</th><th scope="col">Vì sao</th></tr></thead><tbody>${b.a.map((r) => `<tr><td>${md(r[0])}</td><td>${md(r[1])}</td><td>${md(r[2] || '')}</td></tr>`).join('')}</tbody></table></div>`;
+      case 'cmp': return table(b.h, b.r, ' cmp', true);
+      case 'mis': return table(['Sai', 'Đúng', 'Vì sao'], b.a.map((r) => [r[0], r[1], r[2] || '']), ' mis', false);
       default: return '';
     }
   }
